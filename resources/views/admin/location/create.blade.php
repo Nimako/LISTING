@@ -1,7 +1,8 @@
 @extends('admin/layouts.tempDashboard')
 
 @section('content')
-<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+
+<script src="https://cdn.tiny.cloud/1/b74rmyycui208hhuxjbval8r94ka63ao0u1mzrpu7pcoxtqq/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
 tinymce.init({
   selector: '#mytextarea1, #mytextarea2'
