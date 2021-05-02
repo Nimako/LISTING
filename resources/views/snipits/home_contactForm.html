@@ -1,0 +1,52 @@
+
+    <section class="py-lg-11 pt-8 pb-lg-10 position-relative bg-cover"
+    style="background-image: url('{{asset('websiteAssets/images/bg-contact-form-01.jpg')}}')">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-6">
+                <h2 class="text-white fs-32 lh-163 mb-6">Send us a message</h2>
+                <form>
+                    <div class="form row">
+                        <div class="col-md-6 pr-md-2">
+                            <input type="text" name="name"
+                                class="form-control form-control-lg border-0 shadow-none bg-gray-03 placeholder-muted"
+                                placeholder="Name">
+                        </div>
+                        <div class="col-md-6 pl-md-2 pt-md-0 pt-4">
+                            <input type="email" name="email"
+                                class="form-control form-control-lg border-0 shadow-none bg-gray-03 placeholder-muted"
+                                placeholder="Email">
+                        </div>
+                        <div class="col-12 pt-4">
+                            <textarea
+                                class="form-control border-0 shadow-none bg-gray-03 placeholder-muted h-145"
+                                id="exampleFormControlTextarea1" placeholder="Messenger"></textarea>
+                        </div>
+                        <div class="col-12 pt-6">
+                            <button type="submit" class="btn btn-primary font-weight-600 btn-lg">
+                                Send message
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 offset-xl-1 custom-lg-map-height-full pr-lg-0 pt-8 pt-lg-0">
+                <div class="h-lg-full">
+                    <div class="position-relative h-lg-full">
+                        <div id="map" class="mapbox-gl h-lg-full mx-n3 mx-lg-0 map-point-animate"
+                            data-mapbox-access-token="pk.eyJ1IjoiZHVvbmdsaCIsImEiOiJjanJnNHQ4czExMzhyNDVwdWo5bW13ZmtnIn0.f1bmXQsS6o4bzFFJc8RCcQ"
+                            data-mapbox-options='{"center":[-73.9927227, 40.6741035],"setLngLat":[-73.9927227, 40.6741035]}'
+                            data-mapbox-marker='[{"position":[-73.9927227, 40.6741035],"className":"marker","backgroundImage":"images/googlle-market-01.png","backgroundRepeat":"no-repeat","width":"30px","height":"40px"}]'>
+                        </div>
+                        <div
+                            class="mb-0 p-3 bg-white shadow rounded-lg position-absolute pos-fixed-bottom mb-4 ml-4 mb-lg-8 ml-lg-9 lh-17">
+                            <h4 class="fs-18 text-dark">Visit our office at</h4>
+                            <p>62 Gresham St, Victoria Park <br />
+                                WA 6100, Australia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
