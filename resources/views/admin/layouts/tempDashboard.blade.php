@@ -18,23 +18,30 @@
           <link href="{{ asset('assets/libs/datatables/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
           <link href="{{ asset('assets/libs/datatables/select.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
 
+     
+                  <!-- Plugins css -->
+        <link href="{{ asset('assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet" />
+        <link href="{{ asset('assets/libs/switchery/switchery.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/libs/multiselect/multi-select.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/libs/select2/select2.min.css')}}" rel="stylesheet" type="text/css" />
+  
         <!-- App css -->
         <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
         <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css"  id="app-stylesheet" />
         <style>
             .left-side-menu {
-             background: #03b17a;
+             background: #127CE7;
             }
             #sidebar-menu>ul>li>a {
              color: #ffffff;
              font-weight: bold
          }
          .navbar-custom {
-             background-image: linear-gradient(to left, #48d6a8 0%, #029666 100%) !important;
+             background-image: linear-gradient(to left, #127CE7 0%, #4ca0f3 100%) !important;
          }
          .logo-box {
-             background-color: #03b17a;
+             background-color: #127CE7;
          }
          #sidebar-menu>ul>li>a:active, #sidebar-menu>ul>li>a:focus, #sidebar-menu>ul>li>a:hover {
              color: #ffffff;
@@ -106,12 +113,27 @@
         <!-- Datatables init -->
         <script src="{{ asset('assets/js/pages/datatables.init.js')}}"></script>
 
+        <script src="{{ asset('assets/libs/bootstrap-tagsinput/bootstrap-tagsinput.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/switchery/switchery.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/jquery-quicksearch/jquery.quicksearch.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/select2/select2.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/jquery-mockjax/jquery.mockjax.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/autocomplete/jquery.autocomplete.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
+        <script src="{{ asset('assets/libs/multiselect/jquery.multi-select.js')}}"></script>
+        <script src="{{ asset('assets/libs/select2/select2.min.js')}}"></script>        
+
+        <!-- form advanced init -->
+        <script src="{{ asset('assets/js/pages/form-advanced.init.js')}}"></script>
 
         <!-- App js -->
         <script src="{{ asset('assets/js/app.min.js')}}"></script>
         <script>
             $(document).ready( function () {   
                  $('#datatable').DataTable(); 
+
+                 $(".amenities").select2();
+                 
                  } );
 
         </script>

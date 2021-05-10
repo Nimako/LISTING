@@ -51,7 +51,7 @@ class ApartmentLocationController extends Controller
             'uuid'          => Str::uuid(),
             'location'      => $request->input("location"),
             'apartmentName' => $request->input("apartmentName"),
-            'slug'          => strtolower(str_replace(' ', '-', $request->apartmentName)),
+            'slug'          => strtolower(str_replace(' ', '-', strtolower($request->apartmentName))),
             'heading'       => $request->input("heading"),
             'description'   => $request->input("description"),
             'thingToDo'     => $request->input("thingToDo"),
@@ -64,7 +64,7 @@ class ApartmentLocationController extends Controller
           $bannerImagePath = "";
           $featuredImagePath = "";
 
-          $BasePath = "location/".str_replace('', '', $request->location);
+          $BasePath = "location/".str_replace('_', '', strtolower($request->location));
 
         if ($request->hasfile('featuredImage')) {
             $image = $request->file('featuredImage');
@@ -123,7 +123,7 @@ class ApartmentLocationController extends Controller
         $postData= [
             'location'      => $request->input("location"),
             'apartmentName' => $request->input("apartmentName"),
-            'slug'          => strtolower(str_replace(' ', '-', $request->apartmentName)),
+            'slug'          => strtolower(str_replace(' ', '-', strtolower($request->apartmentName))),
             'heading'       => $request->input("heading"),
             'description'   => $request->input("description"),
             'thingToDo'     => $request->input("thingToDo"),
@@ -131,7 +131,7 @@ class ApartmentLocationController extends Controller
 
         $result =  Location::where(["uuid"=>$uuid])->first();
 
-          $BasePath = "location/".str_replace('', '', $request->location);
+          $BasePath = "location/".str_replace('_', '', strtolower($request->location));
 
         if ($request->hasfile('featuredImage')) {
             $image = $request->file('featuredImage');

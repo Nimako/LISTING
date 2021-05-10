@@ -16,7 +16,7 @@
                             <ol class="breadcrumb m-0">
                             </ol>
                         </div>
-                        <h4 class="page-title">Location List</h4>
+                        <h4 class="page-title text-center"><?= @$location->location; ?> Apartments</h4>
                     </div>
                 </div>
             </div>     
@@ -25,7 +25,7 @@
             <div class="row">
 
                 <div class="col-12">
-                    <a href="{{url('admin-location/create')}}" class="btn btn-primary btn-md float-right mb-2">Add New</a>
+                    <a href="{{url('admin-apartment/create/'.$location->uuid)}}" class="btn btn-primary btn-md float-right mb-2">Add Rooms</a>
                 </div>
 
 
@@ -40,8 +40,11 @@
                             <tr>
                                 <th>#</th>
                                 <th>Location</th>
-                                <th>Apartment Name</th>
-                                <th class="text-center">Total Rooms</th>
+                                <th>Bathroom</th>
+                                <th>Guest</th>
+                                <th>Free Cancellation</th>
+                                <th>Rooms</th>
+                                <th>Bed</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -50,12 +53,16 @@
                             <?php foreach($list as $item): ?>
                             <tr>
                                 <td><?= $x++; ?></td>
-                                <td><?= $item->location; ?></td>
-                                <td><?= $item->apartmentName; ?></td>
-                                <td class="text-center"><a class="btn btn-danger btn-sm" href="{{url("admin-apartment/index/".$item->uuid)}}">2</td>
+                                <td><?= $item->room_name; ?></td>
+                                <td><?= $item->total_bathrooms; ?></td>
+                                <td><?= @$item->total_guest_capacity ?></td>
+                                <td><?= @$item->free_cancellation ?></td>
+                                <td><?= @$item->num_of_rooms; ?></td>
+                                <td><?= str_replace('"]',', ',@$item->bed_name); ?></td>
+
                                 <th class="text-center">
-                                    <a class="btn btn-primary btn-sm" href="{{url('admin-apartment/create/'.$item->uuid)}}">Add Rooms</a>
-                                    <a class="btn btn-success btn-sm" href="{{url('admin-location/detail/'.$item->uuid)}}">View</a>
+                                   
+                                    <a class="btn btn-success btn-sm" href="{{url('admin-apartment/detail/'.$item->uuid)}}">View</a>
                                 </th>
                             </tr>
                             <?php endforeach; ?>

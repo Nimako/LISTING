@@ -29,7 +29,7 @@
     .account-pages {
       /* background: linear-gradient(to right, #128cbd 0%, #00AE9C 100%); */
       /* background-image: linear-gradient(to right, rgba(94, 154, 221, 0), rgb(22, 156, 209)); */
-      background-image: linear-gradient(to left, #48d6a8 0%, #029666 100%) !important;
+      background-image: linear-gradient(to left, #127CE7 0%, #2b90f5 100%) !important;
 }
     }
   </style>
@@ -47,7 +47,7 @@
       <div class="card-box  mb-0" style="border:none;">
         <div class="text-center m-t-20">
           <!--<img src="{{ asset('lib/assets/images/logo.jpg') }}" width="90">-->
-           <h3 style="color:#00AE9C">Staylug</h3>
+           {{-- <h3 style="color:#00AE9C">Staylug</h3> --}}
         </div>
         <div class="m-t-10 p-20">
           <div class="row">
@@ -85,7 +85,7 @@
 
                 </div><br>
 
-                <button class="btn btn-md btn-success btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign In</button>
+                <button class="btn btn-md btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign In</button>
               </form>
 
 

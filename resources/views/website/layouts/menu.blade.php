@@ -34,18 +34,30 @@
                                     <?php if(!empty($location)): ?>
                                     <?php foreach($location as $item): ?>
                                     <li class="dropdown-item">
-                                        <a id="navbar-link-home-01" class="dropdown-link" href="{{url("location/".$item->slug)}}">
+                                        <a id="navbar-link-home-01" class="dropdown-link" href="{{url($item->slug)}}">
                                            <?= $item->location; ?>
                                         </a>
                                     </li>
+
                                     <?php endforeach; ?>
                                     <?php endif; ?>
                            
-                                </ul>
+                                  </ul>
+
+                                
                             </li>
+                            {{-- <?php if(!empty($location)): ?>
+                            <?php foreach($location as $item): ?>
+                            <li id="navbar-item-pages" class="nav-item dropdown py-2 py-lg-5 px-0 px-lg-4">
+                              <a id="" class="nav-link dropdown-toggle p-0" href="{{url($item->slug.'/rooms')}}">Rooms</a>
+                             </li>
+                             <?php endforeach; ?>
+                             <?php endif; ?> --}}
                          
-                        </ul>
-                        <div class="d-block d-lg-none">
+                        {{-- </ul>
+                        <?php //$uri = Request::path();
+                        ?> --}}
+                        {{-- <div class="d-block d-lg-none">
                             <ul class="navbar-nav flex-row justify-content-lg-end d-flex flex-wrap py-2">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle mr-md-2 pr-2 pl-0 pl-lg-2" href="#"
@@ -66,9 +78,9 @@
                                         IN</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="d-none d-lg-block">
+                    {{-- <div class="d-none d-lg-block">
                         <ul class="navbar-nav flex-row justify-content-lg-end d-flex flex-wrap text-body py-2">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle mr-md-2 pr-2 pl-0 pl-lg-2" href="#"
@@ -93,7 +105,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </nav>
             </div>
         </div>

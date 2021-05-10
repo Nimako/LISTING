@@ -39,7 +39,7 @@
                     <p class="text-justify px-lg-11 fs-15 lh-17 mb-5">
                        <?= @$location->description; ?>
                     </p>
-                    <p class="text-center px-lg-11 fs-15 lh-17 mb-11"><a href="{{url('rooms/'.$location->slug)}}" class="btn btn-primary">Start Booking now</a></p>
+                    <p class="text-center px-lg-11 fs-15 lh-17 mb-11"><a href="{{url($location->slug.'/rooms')}}" class="btn btn-primary">Start Booking now</a></p>
 
 
                     </section>

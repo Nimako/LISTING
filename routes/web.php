@@ -6,7 +6,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Admin\ApartmentLocationController;
+use App\Http\Controllers\Admin\ApartmentController;
 
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\HomePageController;
@@ -22,11 +24,7 @@ use App\Http\Controllers\HomePageController;
 |
 */
 
-          Route::get('/',  [HomePageController::class,'Homepage']);
-          Route::get('/location/{id}',  [LocationController::class,'LocationDetails']);
 
-
-          //***********************************************************************************/
           Route::get('/admin', [AuthController::class, 'index']);
           Route::get('/dashboard', [DashboardController::class, 'index']);
 
@@ -39,6 +37,13 @@ use App\Http\Controllers\HomePageController;
           //Route::get('dashboard', [AuthController::class, 'dashboard']);
           Route::get('logout', [AuthController::class, 'logout']);
 
+          Route::get('/',  [HomePageController::class,'Homepage']);
+          //Route::get('/location/{id}',  [LocationController::class,'LocationDetails']);
+          Route::get('{id}',  [LocationController::class,'LocationDetails']);
+          Route::get('{id}/rooms',  [RoomController::class,'Index']);
+
+
+          //***********************************************************************************/
 
           // Registered Location
           Route::group(['prefix'=>'admin-location'],function(){
@@ -50,11 +55,25 @@ use App\Http\Controllers\HomePageController;
                Route::get('/delete/{id}',  [ApartmentLocationController::class,'DeleteImage']);
           });
 
+
+          // Registered Location
+          Route::group(['prefix'=>'admin-apartment'],function(){
+               Route::get('/index/{id}', [ApartmentController::class, 'Index']);
+               Route::get('/create/{id}', [ApartmentController::class, 'Create']);
+               Route::post('/store', [ApartmentController::class, 'Store']);
+               Route::post('/update', [ApartmentController::class, 'Update']);
+               Route::get('/detail/{id}',  [ApartmentController::class,'Detail']);
+               Route::get('/delete/{id}',  [ApartmentController::class,'DeleteImage']);
+          });
+
+
           // Registered Customers
           Route::group(['prefix'=>'admin-customer'],function(){
                Route::get('/index', [CustomerController::class, 'Index']);
                Route::get('/detail/{id}',  [CustomerController::class,'Detail']);
           });
+
+
 
 
 

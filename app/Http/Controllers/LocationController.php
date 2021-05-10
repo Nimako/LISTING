@@ -60,10 +60,11 @@ class LocationController extends Controller
           ]);
 
           $lastID = $query->id;
+          
           $locationImagePath    = [];
           $attractionImagesPath = [];
-          $bannerImagePath = "";
-          $featuredImagePath = "";
+          $bannerImagePath      = "";
+          $featuredImagePath    = "";
 
           $BasePath = "location/".str_replace('', '', $request->location);
 
