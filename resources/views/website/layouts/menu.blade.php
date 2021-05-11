@@ -46,13 +46,11 @@
 
                                 
                             </li>
-                            {{-- <?php if(!empty($location)): ?>
-                            <?php foreach($location as $item): ?>
+                            <?php if(!empty(session('getRooms')) ): ?>
                             <li id="navbar-item-pages" class="nav-item dropdown py-2 py-lg-5 px-0 px-lg-4">
-                              <a id="" class="nav-link dropdown-toggle p-0" href="{{url($item->slug.'/rooms')}}">Rooms</a>
+                              <a id="" class="nav-link p-0" href="{{url(session('getRooms').'/rooms')}}">ROOMS</a>
                              </li>
-                             <?php endforeach; ?>
-                             <?php endif; ?> --}}
+                             <?php endif; ?> 
                          
                         {{-- </ul>
                         <?php //$uri = Request::path();

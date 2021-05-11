@@ -19,10 +19,14 @@ class LocationController extends Controller
        
         $data['location'] = Location::where('slug',$slug)->first();
 
-        if(!empty($data['location']))
+        if(!empty($data['location'])):
+
+         session(['getRooms'=>$slug]);
+
         return view("website/location/detail", $data);
-        else
+        else:
         return \Redirect("/");
+        endif;
     }
 
 

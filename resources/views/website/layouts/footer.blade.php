@@ -43,9 +43,9 @@
     </li>
     </ul>
     <div class="text-center text-white fs-22 lh-2 font-weight-500 mxw-751 mb-4">
-    Everything you need to know when looking at different types of homes for sale all in one place.
+    Everything you need to know when looking at different types of short stay accommodation  for sale.
     </div>
-    <ul class="list-inline text-center mb-5">
+   <?php /* <ul class="list-inline text-center mb-5">
     <li class="list-inline-item mr-8 mb-3">
     <a href="#"><img src="{{asset('websiteAssets/images/footer-logo-01.png')}}" alt="Footer Logo 01"> </a>
     </li>
@@ -58,18 +58,18 @@
     <li class="list-inline-item">
     <a href="#"><img src="{{asset('websiteAssets/images/footer-logo-04.png')}}" alt="Footer Logo 04"> </a>
     </li>
-    </ul>
+    </ul> */ ?>
     <ul class="list-inline text-center mb-6">
     <li class="list-inline-item mr-3 text-white opacity-7">
-    © 2020 homeID. All Rights Reserved
+    © 2021 staylug. All Rights Reserved
     </li>
     <li class="list-inline-item divider mr-3"></li>
     <li class="list-inline-item mr-3">
-    <a href="tel:(+00)123567990" class="text-white font-weight-bold fs-15">(+00) 123 567990</a>
+    <a href="tel:(+1)000567990" class="text-white font-weight-bold fs-15">(+1) 000 567990</a>
     </li>
     <li class="list-inline-item divider mr-3"></li>
     <li class="list-inline-item">
-    <a href="mailto:contact@homeid.com" class="text-white opacity-7 hover-white">contact@homeid.com</a>
+    <a href="mailto:contact@homeid.com" class="text-white opacity-7 hover-white">info@staylug.com</a>
     </li>
     </ul>
     <ul class="list-inline text-center mb-2">
@@ -84,22 +84,14 @@
     <i class="fab fa-instagram"></i>
     </a>
     </li>
-    <li class="list-inline-item mr-0">
-    <a href="#" class="text-white opacity-5 fs-18 px-4 hover-primary opacity-hover-10">
-    <i class="fab fa-pinterest"></i>
-    </a>
-    </li>
-    <li class="list-inline-item mr-0">
-    <a href="#" class="text-white opacity-5 fs-18 px-4 hover-primary opacity-hover-10">
-    <i class="fab fa-youtube"></i>
-    </a>
-    </li>
+
     </ul>
     </div>
     </footer>
     
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 
-    <script src="{{asset('websiteAssets/vendors/jquery.min.js')}}"></script>
+    {{-- <script src="{{asset('websiteAssets/vendors/jquery.min.js')}}"></script> --}}
     <script src="{{asset('websiteAssets/vendors/jquery-ui/jquery-ui.min.js')}}"></script>
     <script src="{{asset('websiteAssets/vendors/bootstrap/bootstrap.bundle.js')}}"></script>
     <script src="{{asset('websiteAssets/vendors/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
@@ -114,8 +106,66 @@
     <script src="{{asset('websiteAssets/vendors/jparallax/TweenMax.min.js')}}"></script>
     <script src="{{asset('websiteAssets/vendors/mapbox-gl/mapbox-gl.js')}}"></script>
     <script src="{{asset('websiteAssets/vendors/dataTables/jquery.dataTables.min.js')}}"></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js" integrity="sha512-/n/dTQBO8lHzqqgAQvy0ukBQ0qLmGzxKhn8xKrz4cn7XJkZzy+fAtzjnOQd5w55h4k1kUC+8oIe6WmrGUYwODA==" crossorigin="anonymous"></script>
+
 
     <script src="{{asset('websiteAssets/js/theme.js')}}"></script>
+
+    <script>
+
+    //$('input[name="daterange"]').daterangepicker();
+
+    $(function() {
+      $('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+        }, function(start, end, label) {
+         
+         var startDate = start.format('DD MMMM YY');
+         var endDate   = end.format('DD MMMM YY');
+
+         $("#datedSelected").text(startDate+' - '+endDate);
+
+         console.log(label);
+
+         GetNights(start.format('MM/DD/YYYY'),end.format('MM/DD/YYYY'));
+
+        console.log("A new date selection was made: " + start.format('YYYY-MMMM-DD') + ' to ' + end.format('YYYY-MMMM-DD'));
+      });
+    });
+
+
+    function GetNights(startOne,startTwo){
+
+        var date1 = new Date(startOne);
+        var date2 = new Date(startTwo);
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        var numberOfNights = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+
+        //console.log(numberOfNights + " nights");
+
+        $("#NumNights").text(numberOfNights + " nights");
+
+        //alert(numberOfNights); 
+    }
+
+    $(function(){
+
+        var daterange =  $("#daterange").val();
+        var SplitDaterange = daterange.split("-");
+
+        $("#datedSelected").text(SplitDaterange[0].trim()+' - '+SplitDaterange[1].trim());
+
+        //alert(Date.parse(SplitDaterange[0].trim()));
+
+        GetNights(SplitDaterange[0].trim(),SplitDaterange[1].trim());
+
+    });
+</script>
+
     <div class="modal fade login-register login-register-modal" id="login-register-modal" tabindex="-1" role="dialog"
         aria-labelledby="login-register-modal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered mxw-571" role="document">
