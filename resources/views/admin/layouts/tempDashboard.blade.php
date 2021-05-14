@@ -30,39 +30,39 @@
         <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css"  id="app-stylesheet" />
         <style>
-            .left-side-menu {
-             background: #127CE7;
-            }
-            #sidebar-menu>ul>li>a {
-             color: #ffffff;
+        .left-side-menu {
+             background: #fff;
+        }
+        #sidebar-menu>ul>li>a {
+             color: #343A40;
              font-weight: bold
          }
          .navbar-custom {
-             background-image: linear-gradient(to left, #127CE7 0%, #4ca0f3 100%) !important;
+             background-image: linear-gradient(to left, #fff 0%, #fff 100%) !important;
          }
          .logo-box {
-             background-color: #127CE7;
+             background-color: #fff;
          }
          #sidebar-menu>ul>li>a:active, #sidebar-menu>ul>li>a:focus, #sidebar-menu>ul>li>a:hover {
-             color: #ffffff;
+             color: #343A40;
              text-decoration: none;
              font-weight: bolder
          }
          .nav-second-level li a, .nav-thrid-level li a {
-             color: #ffffff;
-             }
+             color: #343A40;
+        }
          
          #sidebar-menu .menu-title {
              color: #ffffffc5;
          }
          .logo .logo-lg-text-dark {
-             color: #ffffff;
+             color: #343A40;
              text-transform:capitalize;
              font-size:30px;
          }
          .navbar-custom .topnav-menu .nav-link {
              padding: 0 15px;
-             color: #232528;
+             color: #343A40;
          }
          
          </style>

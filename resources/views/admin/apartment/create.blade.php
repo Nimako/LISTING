@@ -114,15 +114,7 @@ tinymce.init({
                                     <div id="bedType"></div>
                                 </div>
 
-                                <br>
-                                <div class="form-group">
-                                    <label>
-                                       Price Per Guest
-                                      <a href="javascript:void"><i onclick="AddPrice()" class="fa fa-plus-circle fa-1x pull-right"></i></a>
-                                    </label>
-                                   
-                                    <div id="PriceBody"></div>
-                                </div>
+                             
 
                              </div>
 
@@ -131,6 +123,25 @@ tinymce.init({
                             <div class="main-profile-overview col-md-6">
     
                                <div class="col-md-12"><br>
+
+                                <div class="form-group">
+                                    <label>
+                                       Price Per Guest
+                                      <a href="javascript:void"><i onclick="AddPrice()" class="fa fa-plus-circle fa-1x pull-right"></i></a>
+                                    </label>
+                                    <div id="PriceBody"></div>
+                                </div>
+
+                                
+                                <div class="form-group">
+                                    <label>Discount ( for 3 or more nights)</label>
+                                    <input required id="discount" name="discount" value="0"  class="form-control" min="0" type="number">
+                                 </div>
+
+
+                                <div class="form-group">
+
+                                </div>
 
                                 <div class="form-group">
                                     <label>Amenities (crt + mounse click to select)</label>

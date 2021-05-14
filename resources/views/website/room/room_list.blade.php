@@ -18,6 +18,14 @@
     body p {
         font-size: .745rem;
     }
+    .RoomPrice{
+        font-weight: 500;
+        font-size: 1.1rem;
+        color: #000
+    }
+    .RoomGuestNight{
+        font-size:1em
+    }
 </style>
     
 <main id="content">
@@ -40,12 +48,12 @@
                     <br>
 
                     <div class=" row">
+                        <div class="col-md-6"></div>
                         <div class="col-md-6">
-                            <input type="text" name="daterange" id="daterange" class="form-control text-center" style="background-color:white"/>
+                            <label class="text-dark">Select checkin and checkout date</label>
+                            <input type="text" name="daterange" id="daterange" class="form-control text-center float-right" style="background-color:white"/>
                         </div>
-                        <div class="col">
-                            <button class="btn btn-primary btn-primary">Search</button>
-                        </div>
+                        
                     </div><br>
 
                     <?php if(!empty($list)): ?>
@@ -75,7 +83,7 @@
                                     <ul class="list-inline d-flex mb-0 flex-wrap">
                                         
                                         <li class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-5"
-                                        data-toggle="tooltip" title="1 Garage">
+                                        data-toggle="tooltip" title="<?= @$item->total_guest_capacity; ?> Sleeps">
                                         <i class="fas fa-users fs-18 text-primary mr-1"></i>
                                         Sleeps <?= @$item->total_guest_capacity; ?>
                                     </li>
@@ -124,10 +132,14 @@
                                     <?php endforeach; ?>                                   
                                     </ul>
                                 </p>
+                                <p>
+                                    <span class="RoomPrice">USD <span id="price<?=$item->id;?>"><?= @$item->pricing[0]->price; ?></span> </span>
+                                    <small class="RoomGuestNight">per night, <span id="guest<?=$item->id;?>"><?= @$item->pricing[0]->guest; ?></span> guest(s) </small>
+                                </p>
                             </div>
 
                         </div>
-                        <section class="row" style="margin-top:-20px">
+                        <section class="row" >
                             <div class="col-md-6">
                                 <?php if($item->free_cancellation==1): ?>
                                  <i class="fa fa-check-circle fa-1x"></i> Free Cancellation!
@@ -137,18 +149,20 @@
                             <div class="col-md-6 float-right">
 
                                 <section class="form-group row">
-                                    <div class="col-md-6">
-                                    <select class="form-control" name="price">
+                                    
+                                    <div class="col-md-9">
+                                      <select class="form-control" id="priceDropDown<?= $item->id; ?>" name="price" onchange="changePrice(<?= $item->id; ?>,this.value)">
+                                        <option value="">Add extra guests</option>
                                         <?php if(!empty($item->pricing)): ?> 
                                          <?php foreach($item->pricing as $price): ?>
-                                         <option value="<?= @$price->id; ?>"><?= @$price->guest; ?> Guests -- USD<?= @$price->price; ?></option>
+                                         <option value='{"pricingID":<?= @$price->id; ?>, "guest":<?= @$price->guest; ?>, "price":"<?= @$price->price; ?>","roomName":"<?= $item->room_name; ?>"}'><?= @$price->guest; ?> Guests</option>
                                          <?php endforeach; ?>
                                         <?php endif; ?>
                                        </select>
                                      </div>
 
                                      <div class="col-md-3">
-                                        <button class="btn btn-primary btn-md">Select</button>
+                                        <button id="selectBtn<?= $item->id; ?>" onclick="AddRoomToCart(<?= $item->id; ?>)" class="btn btn-primary btn-md">Select</button>
                                      </div>
                                      
                                 </section>
@@ -164,19 +178,31 @@
                 <div class="col-md-3 mt-12">
                     <div class="primary-sidebar-inner">
                         <div class="card mb-4">
-                            <div class="card-body px-6 py-4">
+                            <div class="card-body px-4 py-3">
 
                                 <p id="selectedPrice"></p>
 
                                 <p style="font-size:1.1em;">
                                     <span id="datedSelected"></span>
-                                    <span id="NumNights" class="ml-5"></span>
+
+                                    <span class="NumNights ml-6"></span>
                                 </p>
                                 <hr>
-                                <p class="h6 text-center">Select a rate to continue</p>
+                                {{-- <p class="h6 text-center">Select a rate to continue</p> --}}
+
+                                 <p>
+                                     {{-- <p class="text-center" id="">2 Guests</p> --}}
+                                     <p class="text-center h4 pt-0">USD <span id="totalPriceText">0.00</span></p>
+                                     <input type="hidden" id="totalPrice" name="totalPrice" value="0">
+                                     <p class="text-center" style="margin-top: -10px">for <span class="NumNights"></span></p>
+                                 </p>
+
+                                 <table id="CartList" class="table" style="font-size:1em">
+                                     
+                                 </table>
 
                                 <button type="submit" class="btn btn-primary btn-lg btn-block shadow-none mt-4">
-                                    Book
+                                    Book Now
                                 </button>
                             </div>
                         </div>
@@ -201,5 +227,69 @@
         $(".amenities"+id).toggle()
     }
 
+    function changePrice(roomID,value){
+
+        if(value != ""){
+
+            console.log(value);
+
+            var obj = JSON.parse(value);
+
+            $("#price"+roomID).text(obj.price);
+            $("#guest"+roomID).text(obj.guest);
+       }
+    }
+
+    var priceIDArray=[];
+
+    function AddRoomToCart(roomID){
+
+      var priceDropDownValue = $("#priceDropDown"+roomID).val();
+
+      if(priceDropDownValue != ""){
+
+        var obj = JSON.parse(priceDropDownValue);
+
+        if(priceIDArray.indexOf(obj.pricingID) !== -1){
+
+             alert("Array Exist");
+        }else{
+
+            var totalBalance =  $("#totalPrice").val();
+
+            $("#totalPrice").val(Number(totalBalance)+Number(obj.price));
+            $("#totalPriceText").text(Number(totalBalance)+Number(obj.price));
+
+            priceIDArray.push(obj.pricingID);
+
+            //alert(obj.pricingID);
+
+            $("#CartList").append('<tr id="cartID'+obj.pricingID+'"><td class="text-dark">'+obj.roomName+'<br><small>'+obj.guest+' Guests</small></td><td>USD '+obj.price+'</td><td><i class="fa fa-trash" style="cursor:pointer" onclick="RemoveFromCart('+obj.pricingID+','+obj.price+')"></i></td></tr>');
+
+
+            console.log(priceIDArray);
+        }
+     } 
+
+    }
+
+    function RemoveFromCart(pricingID,price){
+
+        const index = priceIDArray.indexOf(pricingID);
+        if (index > -1) {
+            priceIDArray.splice(index, 1);
+        }
+
+        $("#cartID"+pricingID).remove();
+
+        var totalBalance =  $("#totalPrice").val();
+
+        //alert(price);
+
+        $("#totalPrice").val(Number(totalBalance)-Number(price));
+        $("#totalPriceText").text(Number(totalBalance)-Number(price));
+
+        console.log(priceIDArray); 
+    }
 </script>
 

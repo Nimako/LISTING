@@ -28,6 +28,7 @@ class Property extends Model
         'featured_image',
         'images_paths',
         'amenities',
+        'discount',
     ];
     
     public function Pricing()

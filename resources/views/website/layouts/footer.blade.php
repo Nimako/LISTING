@@ -1,6 +1,6 @@
 <footer class="bg-dark pt-10 pb-8 footer">
     <div class="container">
-    <ul class="navbar-nav bg-dark flex-row flex-wrap justify-content-center mb-6 pb-1">
+    {{-- <ul class="navbar-nav bg-dark flex-row flex-wrap justify-content-center mb-6 pb-1">
     <li class="nav-item dropdown px-8">
     <a class="nav-link dropdown-toggle fs-13 font-weight-500 lh-2 text-white text-uppercase" href="#" id="real-estate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Real Estate
@@ -41,9 +41,9 @@
     <a class="dropdown-item" href="#">Something else here</a>
     </div>
     </li>
-    </ul>
+    </ul> --}}
     <div class="text-center text-white fs-22 lh-2 font-weight-500 mxw-751 mb-4">
-    Everything you need to know when looking at different types of short stay accommodation  for sale.
+    Everything you need to know when looking at different types of short stay accommodation.
     </div>
    <?php /* <ul class="list-inline text-center mb-5">
     <li class="list-inline-item mr-8 mb-3">
@@ -112,8 +112,10 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js" integrity="sha512-/n/dTQBO8lHzqqgAQvy0ukBQ0qLmGzxKhn8xKrz4cn7XJkZzy+fAtzjnOQd5w55h4k1kUC+8oIe6WmrGUYwODA==" crossorigin="anonymous"></script>
 
-
     <script src="{{asset('websiteAssets/js/theme.js')}}"></script>
+
+    <script src="{{asset('websiteAssets/bookingCart.js')}}"></script>
+
 
     <script>
 
@@ -121,8 +123,13 @@
 
     $(function() {
       $('input[name="daterange"]').daterangepicker({
-        opens: 'left'
-        }, function(start, end, label) {
+        opens: 'left',
+        endDate: moment().startOf('hour').add(32, 'hour'),
+        // locale: {
+        // format: 'DD-MMMM-YYYY'
+        // }
+        }, 
+         function(start, end, label) {
          
          var startDate = start.format('DD MMMM YY');
          var endDate   = end.format('DD MMMM YY');
@@ -135,6 +142,7 @@
 
         console.log("A new date selection was made: " + start.format('YYYY-MMMM-DD') + ' to ' + end.format('YYYY-MMMM-DD'));
       });
+      
     });
 
 
@@ -147,7 +155,7 @@
 
         //console.log(numberOfNights + " nights");
 
-        $("#NumNights").text(numberOfNights + " nights");
+        $(".NumNights").text(numberOfNights + " nights");
 
         //alert(numberOfNights); 
     }

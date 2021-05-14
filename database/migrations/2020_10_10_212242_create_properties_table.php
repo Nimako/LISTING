@@ -52,6 +52,7 @@ class CreatePropertiesTable extends Migration
             $table->text('featured_image')->nullable();
             $table->text('images_paths')->nullable();
             $table->text('amenities')->nullable();
+            $table->integer('discount')->nullable()->default(0);;
 
             //$table->integer('num_of_floors')->nullable();
             //$table->string('current_onboard_stage')->nullable();
