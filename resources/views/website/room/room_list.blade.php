@@ -236,11 +236,11 @@
                                     <span id="datedSelected"></span>
 
                                     <?php $today = date("Y-m-d"); ?>
-                                     <input type="text" value="<?= date('Y-m-d'); ?>" name="checkIn" id="checkIn">
-                                     <input type="text" value="<?= date('Y-m-d', strtotime($today. ' + 2 days')); ?>" name="checkOut" id="checkOut">
+                                     <input type="hidden" value="<?= date('Y-m-d'); ?>" name="checkIn" id="checkIn">
+                                     <input type="hidden" value="<?= date('Y-m-d', strtotime($today. ' + 2 days')); ?>" name="checkOut" id="checkOut">
 
                                     <span class="NumNights ml-6"></span>
-                                    <input type="text"  name="NumNights" class="NumNights">
+                                    <input type="hidden"  name="NumNights" class="NumNights">
 
                                 </p>
                                 <hr>
