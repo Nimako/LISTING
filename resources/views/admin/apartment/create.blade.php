@@ -126,12 +126,24 @@ tinymce.init({
 
                                 <div class="form-group">
                                     <label>
-                                       Price Per Guest
+                                       Price Per Guest ($)
                                       <a href="javascript:void"><i onclick="AddPrice()" class="fa fa-plus-circle fa-1x pull-right"></i></a>
                                     </label>
                                     <div id="PriceBody"></div>
                                 </div>
+                                <br><br>
 
+                                 <label class="text-danger">Additional Guest</label>
+                                 <section  class="form-row"> 
+                                    <div class="col">
+                                        <label>Number of guest</label>
+                                        <input required="" id="guest" name="addition_guest" value="0" class="form-control mt-1" placeholder="Number of guest" type="number" min="1">
+                                    </div>
+                                        <div class="col">
+                                            <label>Price per guest ($)</label>
+                                            <input required="" id="addition_guest_price" disabled name="addition_guest_price" placeholder="0.00" class="form-control mt-1" type="text">                                              
+                                    </div>
+                                 </section><br><br>
                                 
                                 <div class="form-group">
                                     <label>Discount ( for 3 or more nights)</label>

@@ -85,6 +85,7 @@ class ApartmentController extends Controller
             'bed_name'             => json_encode($request->bed_name),
             'num_of_rooms'          => $request->input("num_of_rooms"),
             'amenities'             => json_encode($request->amenities),
+            'additional_guest'      => $request->input("addition_guest") > 0 ?$request->input("addition_guest")."****".$request->input("addition_guest_price"):null,
             'discount'              => $request->input('discount'),
             'status'                => 1,
             'created_by'            => Auth()->User()->id,

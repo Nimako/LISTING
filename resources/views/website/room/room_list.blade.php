@@ -26,6 +26,9 @@
     .RoomGuestNight{
         font-size:1em
     }
+    .custom-control-label::before {
+        background-color: #ed7373;
+    }
 </style>
     
 <main id="content">
@@ -40,6 +43,9 @@
 
     <section class="pt-8 pb-11 bg-gray-01">
         <div class="container-fluid">
+
+          <form action="{{url("AddBooking")}}" method="POST">
+            @csrf
             <div class="row">
 
 
@@ -94,7 +100,7 @@
                                         <?= @$item->num_of_rooms; ?> Bedroom
                                     </li>
                                
-                                    <li class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-5"
+                                    <li class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center mr-10"
                                     data-toggle="tooltip" title="<?= @$item->total_bathrooms; ?> Bathrooms">
                                     {{-- <i class="fas fa-bed fs-18 text-primary mr-1"></i> --}}
                                     <?php 
@@ -140,19 +146,63 @@
 
                         </div>
                         <section class="row" >
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <?php if($item->free_cancellation==1): ?>
                                  <i class="fa fa-check-circle fa-1x"></i> Free Cancellation!
                                 <?php endif; ?>
                             </div>
 
-                            <div class="col-md-6 float-right">
+                            <div class="col-md-8 float-right">
 
                                 <section class="form-group row">
+
+                                        <div class="col-md-4 text-center">
+                                            <?php if(!empty($item->additional_guest)):  ?>
+                                            <?php $additional_guest = explode("****",$item->additional_guest); ?>
+
+                                            <span class="text-center">
+                                                <i class="fa fa-user text-center"></i>
+                                                <i class="fa fa-user-plus text-center"></i>
+                                            </span>
+                                            <p style="font-weight: normal">
+                                                <?= @$additional_guest[0];?> Adults <br>
+                                                <small>
+                                                    <a onclick="ShowExtraGuest(<?= $item->id; ?>)" href="javascript:void" class="text-danger">Click to add extra persons </a>
+                                                <i data-toggle="tooltip" data-placement="top" title="<?= @$additional_guest[0];?> extra person available per room. Guest 0 - 2 years old stay for free if using exsiting bedding." class="fa fa-info-circle"></i>
+                                               </small>
+                                            </p>
+                                             
+                                            <div id="additional_guest<?= $item->id; ?>" style="display:none;background-color:#F8F8F8">
+
+                                            <?php for($x=1; $x <=$additional_guest[0]; $x++): ?>
+                                               <div class="form-row" style="font-size: 0.8em">
+                                                   {{-- <div class="col">
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input" id="customSwitch<?= $x; ?>">
+                                                        <label class="custom-control-label" for="customSwitch<?= $x; ?>"> $<?= @$additional_guest[1];?>   </label>
+                                                      </div> 
+                                                    </div> --}}
+                                                    <div class="col"> 
+                                                      <label>
+                                                        <input type="checkbox" disabled id="additional_guestPrice<?= $x; ?>" class="additional_guestPrice<?= $item->id; ?>" onchange="AddAdditionalGuest(<?= $item->id; ?>,<?= @$additional_guest[1];?>,<?= $x; ?>)"   name="additional_guest[]" value="<?= $item->id; ?>"  id="customSwitch<?= $x; ?>">
+                                                         1 Adult
+                                                       </label>
+                                                    </div>
+                                                    <div>
+                                                        <label for="customSwitch<?= $x; ?>"> $<?= @$additional_guest[1];?></label>
+                                                    </div>
+                                                 </div>
+                                            <?php endfor; ?>
+                                            </div>
+
+                                            <?php endif; ?>
+
+                                        </div>
+
                                     
-                                    <div class="col-md-9">
+                                    <div class="col-md-5">
                                       <select class="form-control" id="priceDropDown<?= $item->id; ?>" name="price" onchange="changePrice(<?= $item->id; ?>,this.value)">
-                                        <option value="">Add extra guests</option>
+                                        <option value="">Select guests</option>
                                         <?php if(!empty($item->pricing)): ?> 
                                          <?php foreach($item->pricing as $price): ?>
                                          <option value='{"pricingID":<?= @$price->id; ?>, "guest":<?= @$price->guest; ?>, "price":"<?= @$price->price; ?>","roomName":"<?= $item->room_name; ?>"}'><?= @$price->guest; ?> Guests</option>
@@ -162,7 +212,7 @@
                                      </div>
 
                                      <div class="col-md-3">
-                                        <button id="selectBtn<?= $item->id; ?>" onclick="AddRoomToCart(<?= $item->id; ?>)" class="btn btn-primary btn-md">Select</button>
+                                        <button type="submit" id="selectBtn<?= $item->id; ?>" onclick="AddRoomToCart(<?= $item->id; ?>)" class="btn btn-primary btn-md">Select</button>
                                      </div>
                                      
                                 </section>
@@ -185,7 +235,13 @@
                                 <p style="font-size:1.1em;">
                                     <span id="datedSelected"></span>
 
+                                    <?php $today = date("Y-m-d"); ?>
+                                     <input type="text" value="<?= date('Y-m-d'); ?>" name="checkIn" id="checkIn">
+                                     <input type="text" value="<?= date('Y-m-d', strtotime($today. ' + 2 days')); ?>" name="checkOut" id="checkOut">
+
                                     <span class="NumNights ml-6"></span>
+                                    <input type="text"  name="NumNights" class="NumNights">
+
                                 </p>
                                 <hr>
                                 {{-- <p class="h6 text-center">Select a rate to continue</p> --}}
@@ -193,7 +249,9 @@
                                  <p>
                                      {{-- <p class="text-center" id="">2 Guests</p> --}}
                                      <p class="text-center h4 pt-0">USD <span id="totalPriceText">0.00</span></p>
+
                                      <input type="hidden" id="totalPrice" name="totalPrice" value="0">
+
                                      <p class="text-center" style="margin-top: -10px">for <span class="NumNights"></span></p>
                                  </p>
 
@@ -214,6 +272,7 @@
 
 
             </div>
+          </form>
         </div>
     </section>
 
@@ -229,15 +288,25 @@
 
     function changePrice(roomID,value){
 
+        $(".additional_guestPrice"+roomID).attr("disabled","disabled");
+
         if(value != ""){
 
             console.log(value);
+
+            AddRoomToCart(roomID); //Add to cart
 
             var obj = JSON.parse(value);
 
             $("#price"+roomID).text(obj.price);
             $("#guest"+roomID).text(obj.guest);
+
+            $(".additional_guestPrice"+roomID).removeAttr("disabled");
+
+       }else{
+
        }
+
     }
 
     var priceIDArray=[];
@@ -262,9 +331,10 @@
 
             priceIDArray.push(obj.pricingID);
 
+
             //alert(obj.pricingID);
 
-            $("#CartList").append('<tr id="cartID'+obj.pricingID+'"><td class="text-dark">'+obj.roomName+'<br><small>'+obj.guest+' Guests</small></td><td>USD '+obj.price+'</td><td><i class="fa fa-trash" style="cursor:pointer" onclick="RemoveFromCart('+obj.pricingID+','+obj.price+')"></i></td></tr>');
+            $("#CartList").append('<tr id="cartID'+obj.pricingID+'"><td class="text-dark">'+obj.roomName+'<br><small>'+obj.guest+' Guests</small></td><td>USD '+obj.price+'</td><td><i class="fa fa-trash" style="cursor:pointer" onclick="RemoveFromCart('+obj.pricingID+','+obj.price+')"></i><input type="hidden" name="pricingID[]" value="'+obj.pricingID+'"></td></tr>');
 
 
             console.log(priceIDArray);
@@ -291,5 +361,45 @@
 
         console.log(priceIDArray); 
     }
+
+    function ShowExtraGuest(id){
+
+        $("#additional_guest"+id).toggle();
+    }
+
+    function AddAdditionalGuest(roomID,value,x){
+
+        if($("#additional_guestPrice"+x).is(':checked')){
+
+            var CurrentPrice = $("#price"+roomID).text();
+            var currentGuest = $("#guest"+roomID).text();
+
+            $("#price"+roomID).text(Number(CurrentPrice)+Number(value));           
+            $("#guest"+roomID).text(Number(currentGuest)+Number(1));
+
+            
+            var totalBalance =  $("#totalPrice").val();
+            if(Number(totalBalance)>0){
+               $("#totalPrice").val(Number(totalBalance)+Number(value));
+               $("#totalPriceText").text(Number(totalBalance)+Number(value)); 
+            }
+
+        }else{
+            var CurrentPrice =  $("#price"+roomID).text();
+            var currentGuest = $("#guest"+roomID).text();
+
+            $("#price"+roomID).text(Number(CurrentPrice)-Number(value));           
+            $("#guest"+roomID).text(Number(currentGuest)-Number(1));
+
+            var totalBalance =  $("#totalPrice").val();
+            if(Number(totalBalance)>0){
+               $("#totalPrice").val(Number(totalBalance)-Number(value));
+               $("#totalPriceText").text(Number(totalBalance)-Number(value)); 
+            }
+        }
+
+     
+    }
+
 </script>
 

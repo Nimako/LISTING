@@ -116,6 +116,8 @@
 
     <script src="{{asset('websiteAssets/bookingCart.js')}}"></script>
 
+    <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
+
 
     <script>
 
@@ -136,6 +138,9 @@
 
          $("#datedSelected").text(startDate+' - '+endDate);
 
+         $("#checkIn").val(start.format('YYYY-MM-DD'));
+         $("#checkOut").val(end.format('YYYY-MM-DD'));
+
          console.log(label);
 
          GetNights(start.format('MM/DD/YYYY'),end.format('MM/DD/YYYY'));
@@ -155,7 +160,7 @@
 
         //console.log(numberOfNights + " nights");
 
-        $(".NumNights").text(numberOfNights + " nights");
+        $(".NumNights").text(numberOfNights + " nights").val(numberOfNights);
 
         //alert(numberOfNights); 
     }
@@ -166,6 +171,12 @@
         var SplitDaterange = daterange.split("-");
 
         $("#datedSelected").text(SplitDaterange[0].trim()+' - '+SplitDaterange[1].trim());
+
+        // $("#checkIn").val(SplitDaterange[0].trim().format('YYYY-MM-DD'));
+        // $("#checkOut").val(SplitDaterange[1].trim().format('YYYY-MM-DD'));
+
+        // $("#checkIn").val(start.format('YYYY-MM-DD'));
+        //  $("#checkOut").val(end.format('YYYY-MM-DD'));
 
         //alert(Date.parse(SplitDaterange[0].trim()));
 

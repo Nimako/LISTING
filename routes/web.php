@@ -41,6 +41,9 @@ use App\Http\Controllers\HomePageController;
           //Route::get('/location/{id}',  [LocationController::class,'LocationDetails']);
           Route::get('{id}',  [LocationController::class,'LocationDetails']);
           Route::get('{id}/rooms',  [RoomController::class,'Index']);
+          Route::post('AddBooking',  [RoomController::class,'AddBooking']);
+          Route::get('checkOut/{id}',  [RoomController::class,'checkOut']);
+
 
 
           //***********************************************************************************/

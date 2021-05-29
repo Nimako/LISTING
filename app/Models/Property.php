@@ -27,6 +27,7 @@ class Property extends Model
         'bed_name',
         'featured_image',
         'images_paths',
+        'additional_guest',
         'amenities',
         'discount',
     ];
