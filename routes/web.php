@@ -37,7 +37,13 @@ use App\Http\Controllers\HomePageController;
           //Route::get('dashboard', [AuthController::class, 'dashboard']);
           Route::get('logout', [AuthController::class, 'logout']);
 
+      
+
           Route::get('/',  [HomePageController::class,'Homepage']);
+          Route::get('short-stay',  [HomePageController::class,'shortStay']);
+          Route::get('long-stay',  [HomePageController::class,'longStay']);
+          Route::get('contact-us',  [HomePageController::class,'contactUs']);
+
           //Route::get('/location/{id}',  [LocationController::class,'LocationDetails']);
           Route::get('{id}',  [LocationController::class,'LocationDetails']);
           Route::get('{id}/rooms',  [RoomController::class,'Index']);

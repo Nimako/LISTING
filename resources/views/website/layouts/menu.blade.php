@@ -51,6 +51,17 @@
                               <a id="" class="nav-link p-0" href="{{url(session('getRooms').'/rooms')}}">ROOMS</a>
                              </li>
                              <?php endif; ?> 
+                             <li id="navbar-item-pages" class="nav-item dropdown py-2 py-lg-5 px-0 px-lg-4">
+                                <a id="" class="nav-link p-0" href="{{url('short-stay')}}">SHORT STAY</a>
+                            </li>
+
+                            <li id="navbar-item-pages" class="nav-item dropdown py-2 py-lg-5 px-0 px-lg-4">
+                                <a id="" class="nav-link p-0" href="{{url('long-stay')}}">LONG STAY</a>
+                            </li>
+
+                            <li id="navbar-item-pages" class="nav-item dropdown py-2 py-lg-5 px-0 px-lg-4">
+                                <a id="" class="nav-link p-0" href="{{url('contact-us')}}">CONTACT US</a>
+                            </li>
                          
                         {{-- </ul>
                         <?php //$uri = Request::path();

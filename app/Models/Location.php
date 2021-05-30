@@ -31,7 +31,6 @@ class Location extends Model
         "attractionImages",
         "thumbnailOne",
         "thumbnailTwo",
-        
         'created_at',
         'updated_at'
     ];

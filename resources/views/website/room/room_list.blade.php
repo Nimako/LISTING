@@ -212,7 +212,7 @@
                                      </div>
 
                                      <div class="col-md-3">
-                                        <button type="submit" id="selectBtn<?= $item->id; ?>" onclick="AddRoomToCart(<?= $item->id; ?>)" class="btn btn-primary btn-md">Select</button>
+                                        <button type="button" id="selectBtn<?= $item->id; ?>" onclick="AddRoomToCart(<?= $item->id; ?>)" class="btn btn-primary btn-md">Select</button>
                                      </div>
                                      
                                 </section>

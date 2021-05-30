@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\Location;
 use App\Models\Property;
 use App\Models\Pricing;
-use App\Models\Booking;
+use App\Models\Cart;
 use Illuminate\Support\Facades\DB;
 
 
@@ -36,16 +36,16 @@ class RoomController extends Controller
             foreach($request->input('pricingID') as $key => $value){
                 $price = Pricing::where(['id'=>$value])->first();
 
-                $additional_guest =  !empty($price->additional_guest)?count($price->additional_guest):null;
+                $additional_guest =  !empty($request->additional_guest)?count($request->additional_guest):null;
 
-                Booking::create([
+                Cart::create([
                     'created_by'       => null, 
                     'updated_by'       => null, 
                     'uuid'             => $uuid,
                     'property_id'      => $price->property_id,
                     'price'            => $price->price,
                     'guest'            => $price->guest,
-                    'additional_guest' => additional_guest,
+                    'additional_guest' => $additional_guest,
                     'total'            => null,
                     'total_night'      => $request->NumNights,
                     'check_in'         => $request->checkIn,
@@ -53,14 +53,14 @@ class RoomController extends Controller
                 ]);
             }
         }
-        return \Redirect("booking/".$uuid);
+        return \Redirect("checkOut/".$uuid);
     }
 
 
     public function checkOut($booking_id){
 
-        $data['list'] = DB::table("v_booking")->where("uuid",$booking_id)->get();
-
+        $data['list'] = DB::table("v_carts")->where("uuid",$booking_id)->get();
+        
         return view("website/room/checkout",$data);
     }
 

@@ -14,18 +14,11 @@ class Booking extends Model
         'created_by', 
         'updated_by', 
         'uuid',
-        'property_id',
-        'price',
-        'guest',
-        'total_night',
-        'additional_guest',
-        'total',
-        'check_in',
-        'check_out'
+        'first_name',
+        'last_name',
+        'email',
+        'contact_number',
+        'country',
+        'comment'
     ];
-
-    // public function Property()
-    // {
-    //     return $this->belongsTo(Property::class,'property_id','');
-    // }
 }

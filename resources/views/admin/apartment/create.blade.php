@@ -146,7 +146,7 @@ tinymce.init({
                                  </section><br><br>
                                 
                                 <div class="form-group">
-                                    <label>Discount ( for 3 or more nights)</label>
+                                    <label>Discount($) ( for 3 or more nights)</label>
                                     <input required id="discount" name="discount" value="0"  class="form-control" min="0" type="number">
                                  </div>
 

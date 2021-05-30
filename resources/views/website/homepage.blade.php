@@ -18,8 +18,8 @@
                 </h2>
                 <img class="mxw-180 d-block mx-auto mt-4 mb-1" src="images/line-01.png" alt="">
             </div>
-            <a href="listing-full-width-list.html" class="btn btn-primary btn-lg mt-10 mb-4"
-                data-animate="fadeInUp">Find out more<i class="far fa-long-arrow-right ml-1"></i>
+            <a href="{{url('short-stay')}}" class="btn btn-primary btn-lg mt-10 mb-4"
+                data-animate="fadeInUp">Book now<i class="far fa-long-arrow-right ml-1"></i>
             </a>
         </div>
     </section>
@@ -95,690 +95,34 @@
             </div>
         </div>
     </section>
+
     <section class="mb-6">
         <div class="container">
-            <h2 class="text-dark text-center lh-1625">
-                Featured Neighborhoods
-            </h2>
+            <h1 class="text-dark text-center lh-1625">
+            Our Locations
+            </h1>
             <span class="heading-divider mx-auto mb-7"></span>
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="row flex-md-row flex-column">
-                        <div class="col-md-6 mb-6">
-                            <div class="card border-0 text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                                <img src="{{asset('websiteAssets/images/properties-city-15.jpg')}}" class="card-img" alt="New York">
-                                <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
-                                    <h2 class="mb-0 fs-20 lh-182"><a href="listing-full-width-list.html"
-                                            class="text-white">New York</a></h2>
-                                    <p class="fs-13 font-weight-500 letter-spacing-087 mb-0">FROM<span
-                                            class="ml-2 fs-15 font-weight-bold">$540.000 - $900.000</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-6">
-                            <div class="card border-0 text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                                <img src="{{asset('websiteAssets/images/properties-city-16.jpg')}}" class="card-img" alt="New York">
-                                <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
-                                    <h2 class="mb-0 fs-20 lh-182"><a href="listing-full-width-list.html"
-                                            class="text-white">Los Angeles</a></h2>
-                                    <p class="fs-13 font-weight-500 letter-spacing-087 mb-0">FROM<span
-                                            class="ml-2 fs-15 font-weight-bold">$340.000 - $600.000</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-6">
-                            <div class="card border-0 text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                                <img src="{{asset('websiteAssets/images/properties-city-17.jpg')}}" class="card-img" alt="New York">
-                                <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
-                                    <h2 class="mb-0 fs-20 lh-182"><a href="listing-full-width-list.html"
-                                            class="text-white">Chicago</a></h2>
-                                    <p class="fs-13 font-weight-500 letter-spacing-087 mb-0">FROM<span
-                                            class="ml-2 fs-15 font-weight-bold">$310.000 - $700.000</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-6">
-                            <div class="card border-0 text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                                <img src="{{asset('websiteAssets/images/properties-city-18.jpg')}}" class="card-img" alt="New York">
-                                <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
-                                    <h2 class="mb-0 fs-20 lh-182"><a href="listing-full-width-list.html"
-                                            class="text-white">Las Vegas</a></h2>
-                                    <p class="fs-13 font-weight-500 letter-spacing-087 mb-0">FROM<span
-                                            class="ml-2 fs-15 font-weight-bold">$150.000 - $700.000</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                <?php if(!empty($list)): ?>
+                <?php foreach($list as $item): ?>
+                    <div class="col-md-3">
+                        <p class="h3 text-center"><?= Str::ucfirst($item->location); ?></p>
+                        <a style="cursor: pointer" href="{{url($item->slug.'/rooms')}}">
+                         <?php if(!empty($item->featuredImage)): ?>
+                         <img style="cursor: pointer" src="{{'storage/'.$item->featuredImage}}" width="300" height="350" alt="<?= Str::ucfirst($item->location); ?>">
+                         <?php else: ?>
+                           <img style="cursor: pointer" src="{{asset('assets/images/featuredlocationDefault.jpg')}}" width="300" height="350" alt="<?= Str::ucfirst($item->location); ?>">
+                         <?php endif; ?>
+                        </a>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                        <img src="{{asset('websiteAssets/images/properties-city-14.jpg')}}" class="card-img" alt="New York">
-                        <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
-                            <h2 class="card-title mb-0 fs-20 lh-182"><a href="listing-full-width-list.html"
-                                    class="text-white">Atlanta</a>
-                            </h2>
-                            <p class="card-text fs-13 font-weight-500 letter-spacing-087 mb-0">FROM<span
-                                    class="ml-2 fs-15 font-weight-bold">$250.000 - $900.000</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </section>
-    <section class="bg-gray-02 pt-9 pb-10">
-        <div class="container container-xxl">
-            <h2 class="text-center text-dark line-height-base">
-                HomeID Exclusives
-            </h2>
-            <span class="heading-divider mx-auto mb-6"></span>
-            <div class="slick-slider slick-dots-mt-0"
-                data-slick-options='{"slidesToShow": 4, "autoplay":true,"dots":true,"arrows":false,"responsive":[{"breakpoint": 1600,"settings": {"slidesToShow":3}},{"breakpoint": 992,"settings": {"slidesToShow":2}},{"breakpoint": 768,"settings": {"slidesToShow": 2,"autoplay":true}},{"breakpoint": 576,"settings": {"slidesToShow": 1,"autoplay":true}}]}'>
-                <div class="box pt-2 pb-4" data-animate="fadeInUp">
-                    <div class="card shadow-hover-xs-2">
-                        <div class="card-header bg-transparent px-4 pt-4 pb-3 card-img">
-                            <h2 class="fs-16 lh-2 mb-0"><a href="single-property-1.html"
-                                    class="text-dark hover-primary">Home in Metric Way</a></h2>
-                            <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p>
-                            <div class="hover-change-image bg-hover-overlay rounded-lg">
-                                <img src="{{asset('websiteAssets/images/properties-grid-31.jpg')}}" alt="Home in Metric Way">
-                                <div class="card-img-overlay d-flex flex-column">
-                                    <div><span class="badge badge-orange">Featured</span></div>
-                                    <div class="mt-auto d-flex hover-image">
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-auto">
-                                            <li class="list-inline-item mr-2" data-toggle="tooltip"
-                                                title="9 Images">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-images"></i><span class="pl-1">9</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item" data-toggle="tooltip" title="2 Video">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-play-circle"></i><span class="pl-1">2</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-n3">
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Wishlist">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="far fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Compare">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="fas fa-exchange-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <p class="fs-17 font-weight-bold text-heading mb-0 lh-1">$1.250.000</p>
-                                <span class="badge badge-primary">For Sale</span>
-                            </div>
-                        </div>
-                        <div class="card-body py-2">
-                            <p class="mb-0">Lorem ipsum dolor sit amet, sectetur cing elit uspe ndisse suscorem
-                                ipsum dolor sitorem sit amet, sectetur cing elit uspe ndisse suscorem ipsum dolor
-                                sitorem</p>
-                        </div>
-                        <div class="card-footer bg-transparent pt-3 pb-4 pb-3">
-                            <ul class="list-inline d-flex justify-content-between mb-0 flex-wrap">
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-bedroom fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-bedroom"></use>
-                                    </svg>
-                                    3 Br
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-shower fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-shower"></use>
-                                    </svg>
-                                    3 Ba
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-square fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-square"></use>
-                                    </svg>
-                                    2300 Sq.Ft
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-Garage fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-Garage"></use>
-                                    </svg>
-                                    1 Gr
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="box pt-2 pb-4" data-animate="fadeInUp">
-                    <div class="card shadow-hover-xs-2">
-                        <div class="card-header bg-transparent px-4 pt-4 pb-3 card-img">
-                            <h2 class="fs-16 lh-2 mb-0"><a href="single-property-1.html"
-                                    class="text-dark hover-primary">Home in Metric Way</a></h2>
-                            <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p>
-                            <div class="hover-change-image bg-hover-overlay rounded-lg">
-                                <img src="{{asset('websiteAssets/images/properties-grid-32.jpg')}}" alt="Home in Metric Way">
-                                <div class="card-img-overlay d-flex flex-column">
-                                    <div class="mt-auto d-flex hover-image">
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-auto">
-                                            <li class="list-inline-item mr-2" data-toggle="tooltip"
-                                                title="9 Images">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-images"></i><span class="pl-1">9</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item" data-toggle="tooltip" title="2 Video">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-play-circle"></i><span class="pl-1">2</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-n3">
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Wishlist">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="far fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Compare">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="fas fa-exchange-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <p class="fs-17 font-weight-bold text-heading mb-0 lh-1">$1.250.000</p>
-                                <span class="badge badge-primary">For Sale</span>
-                            </div>
-                        </div>
-                        <div class="card-body py-2">
-                            <p class="mb-0">Lorem ipsum dolor sit amet, sectetur cing elit uspe ndisse suscorem
-                                ipsum dolor sitorem sit amet, sectetur cing elit uspe ndisse suscorem ipsum dolor
-                                sitorem</p>
-                        </div>
-                        <div class="card-footer bg-transparent pt-3 pb-4 pb-3">
-                            <ul class="list-inline d-flex justify-content-between mb-0 flex-wrap">
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-bedroom fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-bedroom"></use>
-                                    </svg>
-                                    3 Br
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-shower fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-shower"></use>
-                                    </svg>
-                                    3 Ba
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-square fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-square"></use>
-                                    </svg>
-                                    2300 Sq.Ft
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-Garage fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-Garage"></use>
-                                    </svg>
-                                    1 Gr
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="box pt-2 pb-4" data-animate="fadeInUp">
-                    <div class="card shadow-hover-xs-2">
-                        <div class="card-header bg-transparent px-4 pt-4 pb-3 card-img">
-                            <h2 class="fs-16 lh-2 mb-0"><a href="single-property-1.html"
-                                    class="text-dark hover-primary">Home in Metric Way</a></h2>
-                            <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p>
-                            <div class="hover-change-image bg-hover-overlay rounded-lg">
-                                <img src="{{asset('websiteAssets/images/properties-grid-33.jpg')}}" alt="Home in Metric Way">
-                                <div class="card-img-overlay d-flex flex-column">
-                                    <div><span class="badge badge-orange">Featured</span></div>
-                                    <div class="mt-auto d-flex hover-image">
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-auto">
-                                            <li class="list-inline-item mr-2" data-toggle="tooltip"
-                                                title="9 Images">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-images"></i><span class="pl-1">9</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item" data-toggle="tooltip" title="2 Video">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-play-circle"></i><span class="pl-1">2</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-n3">
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Wishlist">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="far fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Compare">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="fas fa-exchange-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <p class="fs-17 font-weight-bold text-heading mb-0 lh-1">$5.700<span
-                                        class="text-gray-light font-weight-500 fs-14"> / year</span></p>
-                                <span class="badge badge-indigo">For Rent</span>
-                            </div>
-                        </div>
-                        <div class="card-body py-2">
-                            <p class="mb-0">Lorem ipsum dolor sit amet, sectetur cing elit uspe ndisse suscorem
-                                ipsum dolor sitorem sit amet, sectetur cing elit uspe ndisse suscorem ipsum dolor
-                                sitorem</p>
-                        </div>
-                        <div class="card-footer bg-transparent pt-3 pb-4 pb-3">
-                            <ul class="list-inline d-flex justify-content-between mb-0 flex-wrap">
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-bedroom fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-bedroom"></use>
-                                    </svg>
-                                    3 Br
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-shower fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-shower"></use>
-                                    </svg>
-                                    3 Ba
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-square fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-square"></use>
-                                    </svg>
-                                    2300 Sq.Ft
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-Garage fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-Garage"></use>
-                                    </svg>
-                                    1 Gr
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="box pt-2 pb-4" data-animate="fadeInUp">
-                    <div class="card shadow-hover-xs-2">
-                        <div class="card-header bg-transparent px-4 pt-4 pb-3 card-img">
-                            <h2 class="fs-16 lh-2 mb-0"><a href="single-property-1.html"
-                                    class="text-dark hover-primary">Home in Metric Way</a></h2>
-                            <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p>
-                            <div class="hover-change-image bg-hover-overlay rounded-lg">
-                                <img src="{{asset('websiteAssets/images/properties-grid-34.jpg')}}" alt="Home in Metric Way">
-                                <div class="card-img-overlay d-flex flex-column">
-                                    <div><span class="badge badge-orange">Featured</span></div>
-                                    <div class="mt-auto d-flex hover-image">
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-auto">
-                                            <li class="list-inline-item mr-2" data-toggle="tooltip"
-                                                title="9 Images">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-images"></i><span class="pl-1">9</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item" data-toggle="tooltip" title="2 Video">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-play-circle"></i><span class="pl-1">2</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-n3">
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Wishlist">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="far fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Compare">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="fas fa-exchange-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <p class="fs-17 font-weight-bold text-heading mb-0 lh-1">$5.700<span
-                                        class="text-gray-light font-weight-500 fs-14"> / year</span></p>
-                                <span class="badge badge-indigo">For Rent</span>
-                            </div>
-                        </div>
-                        <div class="card-body py-2">
-                            <p class="mb-0">Lorem ipsum dolor sit amet, sectetur cing elit uspe ndisse suscorem
-                                ipsum dolor sitorem sit amet, sectetur cing elit uspe ndisse suscorem ipsum dolor
-                                sitorem</p>
-                        </div>
-                        <div class="card-footer bg-transparent pt-3 pb-4 pb-3">
-                            <ul class="list-inline d-flex justify-content-between mb-0 flex-wrap">
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-bedroom fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-bedroom"></use>
-                                    </svg>
-                                    3 Br
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-shower fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-shower"></use>
-                                    </svg>
-                                    3 Ba
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-square fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-square"></use>
-                                    </svg>
-                                    2300 Sq.Ft
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-Garage fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-Garage"></use>
-                                    </svg>
-                                    1 Gr
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="box pt-2 pb-4" data-animate="fadeInUp">
-                    <div class="card shadow-hover-xs-2">
-                        <div class="card-header bg-transparent px-4 pt-4 pb-3 card-img">
-                            <h2 class="fs-16 lh-2 mb-0"><a href="single-property-1.html"
-                                    class="text-dark hover-primary">Home in Metric Way</a></h2>
-                            <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p>
-                            <div class="hover-change-image bg-hover-overlay rounded-lg">
-                                <img src="{{asset('websiteAssets/images/properties-grid-32.jpg')}}" alt="Home in Metric Way">
-                                <div class="card-img-overlay d-flex flex-column">
-                                    <div class="mt-auto d-flex hover-image">
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-auto">
-                                            <li class="list-inline-item mr-2" data-toggle="tooltip"
-                                                title="9 Images">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-images"></i><span class="pl-1">9</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item" data-toggle="tooltip" title="2 Video">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-play-circle"></i><span class="pl-1">2</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-n3">
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Wishlist">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="far fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Compare">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="fas fa-exchange-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <p class="fs-17 font-weight-bold text-heading mb-0 lh-1">$1.250.000</p>
-                                <span class="badge badge-primary">For Sale</span>
-                            </div>
-                        </div>
-                        <div class="card-body py-2">
-                            <p class="mb-0">Lorem ipsum dolor sit amet, sectetur cing elit uspe ndisse suscorem
-                                ipsum dolor sitorem sit amet, sectetur cing elit uspe ndisse suscorem ipsum dolor
-                                sitorem</p>
-                        </div>
-                        <div class="card-footer bg-transparent pt-3 pb-4 pb-3">
-                            <ul class="list-inline d-flex justify-content-between mb-0 flex-wrap">
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-bedroom fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-bedroom"></use>
-                                    </svg>
-                                    3 Br
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-shower fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-shower"></use>
-                                    </svg>
-                                    3 Ba
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-square fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-square"></use>
-                                    </svg>
-                                    2300 Sq.Ft
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-Garage fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-Garage"></use>
-                                    </svg>
-                                    1 Gr
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="box pt-2 pb-4" data-animate="fadeInUp">
-                    <div class="card shadow-hover-xs-2">
-                        <div class="card-header bg-transparent px-4 pt-4 pb-3 card-img">
-                            <h2 class="fs-16 lh-2 mb-0"><a href="single-property-1.html"
-                                    class="text-dark hover-primary">Home in Metric Way</a></h2>
-                            <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p>
-                            <div class="hover-change-image bg-hover-overlay rounded-lg">
-                                <img src="{{asset('websiteAssets/images/properties-grid-33.jpg')}}" alt="Home in Metric Way">
-                                <div class="card-img-overlay d-flex flex-column">
-                                    <div><span class="badge badge-orange">Featured</span></div>
-                                    <div class="mt-auto d-flex hover-image">
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-auto">
-                                            <li class="list-inline-item mr-2" data-toggle="tooltip"
-                                                title="9 Images">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-images"></i><span class="pl-1">9</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item" data-toggle="tooltip" title="2 Video">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-play-circle"></i><span class="pl-1">2</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-n3">
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Wishlist">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="far fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Compare">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="fas fa-exchange-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <p class="fs-17 font-weight-bold text-heading mb-0 lh-1">$5.700<span
-                                        class="text-gray-light font-weight-500 fs-14"> / year</span></p>
-                                <span class="badge badge-indigo">For Rent</span>
-                            </div>
-                        </div>
-                        <div class="card-body py-2">
-                            <p class="mb-0">Lorem ipsum dolor sit amet, sectetur cing elit uspe ndisse suscorem
-                                ipsum dolor sitorem sit amet, sectetur cing elit uspe ndisse suscorem ipsum dolor
-                                sitorem</p>
-                        </div>
-                        <div class="card-footer bg-transparent pt-3 pb-4 pb-3">
-                            <ul class="list-inline d-flex justify-content-between mb-0 flex-wrap">
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-bedroom fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-bedroom"></use>
-                                    </svg>
-                                    3 Br
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-shower fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-shower"></use>
-                                    </svg>
-                                    3 Ba
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-square fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-square"></use>
-                                    </svg>
-                                    2300 Sq.Ft
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-Garage fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-Garage"></use>
-                                    </svg>
-                                    1 Gr
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="box pt-2 pb-4" data-animate="fadeInUp">
-                    <div class="card shadow-hover-xs-2">
-                        <div class="card-header bg-transparent px-4 pt-4 pb-3 card-img">
-                            <h2 class="fs-16 lh-2 mb-0"><a href="single-property-1.html"
-                                    class="text-dark hover-primary">Home in Metric Way</a></h2>
-                            <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p>
-                            <div class="hover-change-image bg-hover-overlay rounded-lg">
-                                <img src="{{asset('websiteAssets/images/properties-grid-34.jpg')}}" alt="Home in Metric Way">
-                                <div class="card-img-overlay d-flex flex-column">
-                                    <div><span class="badge badge-orange">Featured</span></div>
-                                    <div class="mt-auto d-flex hover-image">
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-auto">
-                                            <li class="list-inline-item mr-2" data-toggle="tooltip"
-                                                title="9 Images">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-images"></i><span class="pl-1">9</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item" data-toggle="tooltip" title="2 Video">
-                                                <a href="#" class="text-white hover-primary">
-                                                    <i class="far fa-play-circle"></i><span class="pl-1">2</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <ul class="list-inline mb-0 d-flex align-items-end mr-n3">
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Wishlist">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="far fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item mr-3 h-32" data-toggle="tooltip"
-                                                title="Compare">
-                                                <a href="#" class="text-white fs-20 hover-primary">
-                                                    <i class="fas fa-exchange-alt"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center pt-3">
-                                <p class="fs-17 font-weight-bold text-heading mb-0 lh-1">$5.700<span
-                                        class="text-gray-light font-weight-500 fs-14"> / year</span></p>
-                                <span class="badge badge-indigo">For Rent</span>
-                            </div>
-                        </div>
-                        <div class="card-body py-2">
-                            <p class="mb-0">Lorem ipsum dolor sit amet, sectetur cing elit uspe ndisse suscorem
-                                ipsum dolor sitorem sit amet, sectetur cing elit uspe ndisse suscorem ipsum dolor
-                                sitorem</p>
-                        </div>
-                        <div class="card-footer bg-transparent pt-3 pb-4 pb-3">
-                            <ul class="list-inline d-flex justify-content-between mb-0 flex-wrap">
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-bedroom fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-bedroom"></use>
-                                    </svg>
-                                    3 Br
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-shower fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-shower"></use>
-                                    </svg>
-                                    3 Ba
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-square fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-square"></use>
-                                    </svg>
-                                    2300 Sq.Ft
-                                </li>
-                                <li
-                                    class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                    <svg class="icon icon-Garage fs-18 text-primary mr-1">
-                                        <use xlink:href="#icon-Garage"></use>
-                                    </svg>
-                                    1 Gr
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="pt-10 pb-7">
+
+
+    {{-- <section class="pt-10 pb-7">
         <div class="container">
             <h2 class="text-heading text-center">Services Offered</h2>
             <span class="heading-divider mx-auto mb-2"></span>
@@ -846,70 +190,57 @@
                 </div>
             </div>
         </div>
-    </section>
-
-
+    </section> --}}
 
     <section data-animated-id="6">
         <div class="bg-patten-01 pt-12 pb-10 bg-secondary">
         <div class="container">
-        <h2 class="text-white text-center lh-1625 mxw-589 font-weight-normal">Looking to Buy a new property or Sell
-        an existing
-        one?</h2>
+      
         <span class="heading-divider mx-auto"></span>
         <div class="row info-box-3 mt-7 no-gutters mx-auto">
-        <div class="col-md-3 col-sm-6 mb-6 mb-md-0 zoomIn animated" data-animate="zoomIn">
-        <a href="listing-with-left-sidebar.html" class="card border-0 align-items-center justify-content-center pb-5 pt-7 px-0 shadow-hover-3 bg-transparent bg-hover-white text-decoration-none hover-change-image">
-        <div class="card-img-top d-flex align-items-center justify-content-center border-md-right rounded-0">
-        <div class=" position-relative">
-        <img src="{{asset('websiteAssets/images/verified.png')}}" class="hover-image position-absolute pos-fixed-top" alt="Apartment">
-        <img src="{{asset('websiteAssets/images/white-verified.png')}}" class="image" alt="Apartment">
+
+        <div class="col-md-5 card p-5  col-sm-6 mb-6 mb-md-0 zoomIn animated" data-animate="zoomIn">
+            <p class="h5"><b>Short Apartment Stay</b></p>
+            <div class="card-img-top  d-flex align-items-center justify-content-center border-md-right rounded-0">
+            <div class=" position-relative">
+            <img src="{{asset('websiteAssets/images/verified.png')}}" class="hover-image position-absolute pos-fixed-top" alt="Apartment">
+            <img src="{{asset('websiteAssets/images/white-verified.png')}}" class="image" alt="Apartment">
+            </div>
+            </div>
+            <div class="card-body px-0 pt-5 pb-0">
+            <h6 class="card-title text-center text-dark p-2">
+                For Short Let Apartment Rentals;
+                From Daily Booking To Over 3 Weeks Stay
+            </h6>
+            <center>
+            <a href="{{url('short-stay')}}" class="btn btn-primary">Book now</a>
+            </center>
+            </div>
         </div>
+
+        
+
+        <div class="col-md-2 col-sm-6 mb-6 mb-md-0 zoomIn animated" data-animate="zoomIn">
+            
         </div>
-        <div class="card-body px-0 pt-5 pb-0">
-        <h4 class="card-title fs-16 lh-2 text-white mb-0">Apartment</h4>
+
+        <div class="col-md-5 card p-5  col-sm-6 mb-6 mb-md-0 zoomIn animated" data-animate="zoomIn">
+            <p class="h5"><b>Long Apartment Stay</b></p>
+            <div class="card-img-top  d-flex align-items-center justify-content-center border-md-right rounded-0">
+            <div class=" position-relative">
+            <img src="{{asset('websiteAssets/images/verified.png')}}" class="hover-image position-absolute pos-fixed-top" alt="Apartment">
+            <img src="{{asset('websiteAssets/images/white-verified.png')}}" class="image" alt="Apartment">
+            </div>
+            </div>
+            <div class="card-body px-0 pt-5 pb-0">
+                <p> Call / Whatsapp:<br> <b>+233 244 274 699 / +233 000000</b></p>
+
+                <p>Email:<br><b>customerservice@staylug.com</b></p>
+
+            </div>
         </div>
-        </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-6 mb-md-0 zoomIn animated" data-animate="zoomIn">
-        <a href="listing-with-left-sidebar.html" class="card border-0 align-items-center justify-content-center pb-5 pt-7 px-0 shadow-hover-3 bg-transparent bg-hover-white text-decoration-none hover-change-image">
-        <div class="card-img-top d-flex align-items-center justify-content-center border-md-right rounded-0">
-        <div class=" position-relative">
-        <img src="{{asset('websiteAssets/images/sofa.png')}}" class="hover-image position-absolute pos-fixed-top" alt="House">
-        <img src="{{asset('websiteAssets/images/white-sofa.png')}}" class="image" alt="House">
-        </div>
-        </div>
-        <div class="card-body px-0 pt-5 pb-0">
-        <h4 class="card-title fs-16 lh-2 text-white mb-0">House</h4>
-        </div>
-        </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-6 mb-md-0 zoomIn animated" data-animate="zoomIn">
-        <a href="listing-with-left-sidebar.html" class="card border-0 align-items-center justify-content-center pb-5 pt-7 px-0 shadow-hover-3 bg-transparent bg-hover-white text-decoration-none hover-change-image">
-        <div class="card-img-top d-flex align-items-center justify-content-center border-md-right rounded-0">
-        <div class=" position-relative">
-        <img src="{{asset('websiteAssets/images/architecture-and-city.png')}}" class="hover-image position-absolute pos-fixed-top" alt="Office">
-        <img src="{{asset('websiteAssets/images/white-architecture-and-city.png')}}" class="image" alt="Office">
-        </div>
-        </div>
-        <div class="card-body px-0 pt-5 pb-0">
-        <h4 class="card-title fs-16 lh-2 text-white mb-0">Office</h4>
-        </div>
-        </a>
-        </div>
-        <div class="col-md-3 col-sm-6 mb-6 mb-md-0 zoomIn animated" data-animate="zoomIn">
-        <a href="listing-with-left-sidebar.html" class="card border-0 align-items-center justify-content-center pb-5 pt-7 px-0 shadow-hover-3 bg-transparent bg-hover-white text-decoration-none hover-change-image">
-        <div class="card-img-top d-flex align-items-center justify-content-center  rounded-0">
-        <div class=" position-relative">
-        <img src="{{asset('websiteAssets/images/eco-house.png')}}" class="hover-image position-absolute pos-fixed-top" alt="Villa">
-        <img src="{{asset('websiteAssets/images/white-eco-house.png')}}" class="image" alt="Villa">
-        </div>
-        </div>
-        <div class="card-body px-0 pt-5 pb-0">
-        <h4 class="card-title fs-16 lh-2 text-white mb-0">Villa</h4>
-        </div>
-        </a>
-        </div>
+
+
         </div>
         </div>
         </div>
