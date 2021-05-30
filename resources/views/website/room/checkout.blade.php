@@ -16,7 +16,7 @@
 </section>
 
   <?php if(!empty($list[0]->check_in)): ?>
-  <?php $totalAmount = 0; $discount = 0;?>
+  <?php $totalAmount = 0; $discount = 0; $total= 0;?>
   <section class="pt-8 pb-11 bg-gray-01">
       <div class="container">
 
@@ -64,7 +64,7 @@
                                                 $ <?= $total = (@$item->price * $item->total_night) + ($item->additional_guest * explode("****", $item->additional_guest_price)[1]);  ?>
                                               </p>
                                               <?php else: ?>
-                                                <p class="h6">US$ <?= $total (@$item->price)*$item->total_night;  ?>
+                                                <p class="h6">US$ <?= $total = (@$item->price)*$item->total_night;  ?>
                                                 </p>
                                               <?php endif; ?>
 
