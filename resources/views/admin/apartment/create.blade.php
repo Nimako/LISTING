@@ -88,12 +88,23 @@ tinymce.init({
                                         <input type="radio" value="0" id="free_cancellation2" name="free_cancellation" class="custom-control-input">
                                         <label class="custom-control-label" for="free_cancellation2">NO</label>
                                     </div>
-                                 </div>
+                                 </div><br><br>
 
                                  <div class="form-group">
                                     <label>Total Guest</label>
                                     <input required id="total_guest_capacity" name="total_guest_capacity"  class="form-control" min="0" type="number">
-                                 </div>
+                                 </div><br> <br>
+                                 <label class="text-danger">Additional Guest</label>
+                                 <section  class="form-row"> 
+                                    <div class="col">
+                                        <label>Number of guest</label>
+                                        <input required="" id="guest" name="addition_guest" value="0" class="form-control mt-1" placeholder="Number of guest" type="number" min="1">
+                                    </div>
+                                        <div class="col">
+                                            <label>Price per guest ($)</label>
+                                            <input required="" id="addition_guest_price"  name="addition_guest_price" placeholder="0.00" class="form-control mt-1" type="text">                                              
+                                    </div>
+                                 </section><br><br>
 
                                  <div class="form-group">
                                     <label>Total Bathroom</label>
@@ -133,17 +144,7 @@ tinymce.init({
                                 </div>
                                 <br><br>
 
-                                 <label class="text-danger">Additional Guest</label>
-                                 <section  class="form-row"> 
-                                    <div class="col">
-                                        <label>Number of guest</label>
-                                        <input required="" id="guest" name="addition_guest" value="0" class="form-control mt-1" placeholder="Number of guest" type="number" min="1">
-                                    </div>
-                                        <div class="col">
-                                            <label>Price per guest ($)</label>
-                                            <input required="" id="addition_guest_price" disabled name="addition_guest_price" placeholder="0.00" class="form-control mt-1" type="text">                                              
-                                    </div>
-                                 </section><br><br>
+                                
                                 
                                 <div class="form-group">
                                     <label>Discount($) ( for 3 or more nights)</label>
