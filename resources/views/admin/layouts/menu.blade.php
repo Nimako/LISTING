@@ -160,7 +160,7 @@
                             <span class="menu-arrow"></span>
                         </a>
                         <ul class="nav-second-level" aria-expanded="false">
-                            {{-- <li><a href="{{url("users")}}">User List</a></li> --}}
+                            <li><a href="{{url("registration")}}">User List</a></li> 
                             {{-- <li><a href="{{url("lookupSetup/facilities")}}">Facilities</a></li>
                             <li><a href="{{url("lookupSetup/bedTypes")}}">Bed Types</a></li> --}}
                         </ul>

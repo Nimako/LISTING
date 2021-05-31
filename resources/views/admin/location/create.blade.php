@@ -110,7 +110,7 @@ tinymce.init({
                                <div class="col-md-12"><br>
 
                                 <div class="form-group">
-                                    <label>Featured Image</label>
+                                    <label>Featured Image (720 x 440 pixel)</label>
                                     <input type="file" multiple=""  class="form-control" name="featuredImage" accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                     <?php 
                                     if(!empty($info->featuredImage)): ?>
@@ -121,8 +121,8 @@ tinymce.init({
                                     <?php endif; ?>
                                    </div>
 
-                                <div class="form-group">
-                                 <label>Banner Image</label>
+                                <div class="form-group mt-5">
+                                 <label>Banner Image (1920 x 894 pixel)</label>
                                  <input type="file" multiple=""  class="form-control" name="bannerImage" accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                  <?php 
                                  if(!empty($info->bannerImage)): ?>
@@ -133,8 +133,8 @@ tinymce.init({
                                  <?php endif; ?>
                                 </div>
                                  
-                                <div class="form-group">
-                                <label>Location Image</label>
+                                <div class="form-group mt-5">
+                                <label>Location Image (1200 x 800 pixel)</label>
                                 <input type="file" multiple="" class="form-control" name="locationImages[]">
 
                                  <?php  if(!empty($info->locationImages)): ?>
@@ -148,8 +148,8 @@ tinymce.init({
                                  <?php endif; ?>
                                 </div>
 
-                                <div class="form-group">
-                                <label>Attraction Image</label>
+                                <div class="form-group mt-5">
+                                <label>Attraction Image (460 x 310 pixel)</label>
                                 <input type="file" multiple="" class="form-control" name="attractionImages[]" accept="image/x-png,image/gif,image/jpeg,image/jpg">
 
                                 <?php  if(!empty($info->attractionImages)): ?>

@@ -31,6 +31,7 @@ use App\Http\Controllers\HomePageController;
           Route::get('login', [AuthController::class, 'index'])->name('login');
           Route::post('post-login', [AuthController::class, 'postLogin']);
           Route::get('registration', [AuthController::class, 'registration']);
+          Route::get('/user-edit/{id}', [AuthController::class, 'editUser']);
           Route::post('post-registration', [AuthController::class, 'postRegistration']);
           Route::post('update-registration', [AuthController::class, 'updateRegistration']);
           Route::get('delete-registration/{id}', [AuthController::class, 'deleteRegistration']);

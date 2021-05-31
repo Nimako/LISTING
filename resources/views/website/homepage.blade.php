@@ -109,7 +109,7 @@
                         <p class="h3 text-center"><?= Str::ucfirst($item->location); ?></p>
                         <a style="cursor: pointer" href="{{url($item->slug.'/rooms')}}">
                          <?php if(!empty($item->featuredImage)): ?>
-                         <img style="cursor: pointer" src="{{'storage/'.$item->featuredImage}}" width="300" height="350" alt="<?= Str::ucfirst($item->location); ?>">
+                         <img style="cursor: pointer" src="{{'storage/'.$item->featuredImage}}" width="500" height="450" alt="<?= Str::ucfirst($item->location); ?>">
                          <?php else: ?>
                            <img style="cursor: pointer" src="{{asset('assets/images/featuredlocationDefault.jpg')}}" width="300" height="350" alt="<?= Str::ucfirst($item->location); ?>">
                          <?php endif; ?>
@@ -200,7 +200,7 @@
         <div class="row info-box-3 mt-7 no-gutters mx-auto">
 
         <div class="col-md-5 card p-5  col-sm-6 mb-6 mb-md-0 zoomIn animated" data-animate="zoomIn">
-            <p class="h5"><b>Short Apartment Stay</b></p>
+            <p class="h5 text-center"><b>Short Apartment Stay</b></p>
             <div class="card-img-top  d-flex align-items-center justify-content-center border-md-right rounded-0">
             <div class=" position-relative">
             <img src="{{asset('websiteAssets/images/verified.png')}}" class="hover-image position-absolute pos-fixed-top" alt="Apartment">
@@ -225,14 +225,14 @@
         </div>
 
         <div class="col-md-5 card p-5  col-sm-6 mb-6 mb-md-0 zoomIn animated" data-animate="zoomIn">
-            <p class="h5"><b>Long Apartment Stay</b></p>
+            <p class="h5 text-center"><b>Long Apartment Stay</b></p>
             <div class="card-img-top  d-flex align-items-center justify-content-center border-md-right rounded-0">
             <div class=" position-relative">
             <img src="{{asset('websiteAssets/images/verified.png')}}" class="hover-image position-absolute pos-fixed-top" alt="Apartment">
             <img src="{{asset('websiteAssets/images/white-verified.png')}}" class="image" alt="Apartment">
             </div>
             </div>
-            <div class="card-body px-0 pt-5 pb-0">
+            <div class="card-body px-0 pt-5 pb-0 text-center" >
                 <p> Call / Whatsapp:<br> <b>+233 244 274 699 / +233 000000</b></p>
 
                 <p>Email:<br><b>customerservice@staylug.com</b></p>

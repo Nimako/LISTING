@@ -29,7 +29,6 @@ class AuthController extends Controller
         if (Auth::check()) {
 
             $data['list'] = User::where('Status', '<>', "DELETED")->get();
-            $data['showroom'] = DB::table("showroom")->get();
 
             return view('admin/registration',$data);
         }
@@ -57,21 +56,25 @@ class AuthController extends Controller
     public function postRegistration(Request $request)
     {
        request()->validate([
-            'fullName'     => 'required',
+            'fullname'     => 'required',
             'email'        => 'email|unique:admin_user',
             'username'     => 'required|unique:admin_user',
             'password'     => 'required|min:6',
         ]);
 
-        $result = User::create([
-            [
-                'uuid'         => Str::uuid(),
-                'fullName'     => $request->input('fullname'),
-                'email'        => $request->input('email'),
-                'username'     => $request->input('username'),
-                'password'     => $request->input('password'),
-            ]
-        ]);
+        $user = new User;
+
+        $user->uuid = Str::uuid();
+        $user->fullname = $request->fullname;
+        $user->email = $request->email;
+        $user->username = $request->username;
+        $user->password = Hash::make($request->input('password'));
+        $user->status = "ACTIVE";
+
+
+        $user->save();
+
+
 
         return Redirect::to("registration")->withSuccess('User created');
     }
@@ -86,16 +89,6 @@ class AuthController extends Controller
         return Redirect::to("login")->withSuccess('Opps! You do not have access');
     }
 
-
-    public function create(array $data)
-    {
-        return User::create([
-            'fullname'           => $data['fullname'],
-            'email'              => $data['email'],
-            'username'           => $data['username'],
-            'password'           => Hash::make($data['password']),
-        ]);
-    }
 
     public function editUser($id)
     {
@@ -135,7 +128,7 @@ class AuthController extends Controller
 
     public function deleteRegistration($id){
 
-        $affected = DB::where('id', $id)->update(['Status'=>'DELETED']);
+        $affected = User::where('id', $id)->update(['status'=>'DELETED']);
 
         if ($affected) {
             return Redirect::to("registration");   

@@ -1,16 +1,18 @@
-@extends('layouts.tempMain')
+@extends('admin/layouts.tempDashboard')
 @section('content')
 
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
-        <div class="wrapper">
-            <div class="container-fluid">
+        <div class="content-page">
+            <div class="content">
+                
 
                 <!-- Page-Title -->
                 <div class="row">
                     <div class="col-sm-12">
+                        
                         <div class="page-title-box">
 
                             <h4 class="page-title">User Management</h4>
@@ -33,8 +35,11 @@
                                 </div>
                             @endif
 
+                            
+
 
                         </div>
+
                     </div>
                 </div>
                 <!-- end row -->
@@ -42,6 +47,14 @@
                 <div class="row">
 
                     <div class="col-md-12">
+                      <a class="btn btn-md btn-primary float-right" href="{{url("registration")}}">Add new user</a><br>
+                    </div>
+
+
+                    <div class="col-md-12">
+
+                        
+
                         <div class="card-box">
                         <h4 class="m-t-0 header-title"></h4>
                         <?php if(empty($info)): ?>
@@ -56,31 +69,13 @@
 
                             <p style="font-size:1.2em;">Personal Details</p>
 
-                            <?php if(!empty($info)): ?>
-                               <input type="hidden" name="user_id" value="<?= ($info->id); ?>">
-                            <?php endif; ?>
-                            
-                            <div class="form-label-group">
-                                <input type="text" id="inputName" value="<?= !empty($info)?$info->username:null; ?>" required="" name="username" class="form-control" placeholder="Username" autofocus>
 
-                                @if ($errors->has('username'))
-                                <span class="error">{{ $errors->first('username') }}</span>
-                                @endif
-                            </div><br>
 
                             <div class="form-label-group">
-                                <input type="password" name="password"  <?= empty($info)?"required=''":null; ?> id="inputPassword" class="form-control" placeholder="Password" >
-    
-                                @if ($errors->has('password'))
-                                <span class="error">{{ $errors->first('password') }}</span>
-                                @endif
-                            </div><br>
+                                <input type="text" id="inputName" value="<?= !empty($info)?$info->fullname:null; ?>" required="" name="fullname" class="form-control" placeholder="Full name" autofocus>
 
-                            <div class="form-label-group">
-                                <input type="text" id="inputName" value="<?= !empty($info)?$info->FullName:null; ?>" required="" name="FullName" class="form-control" placeholder="Full name" autofocus>
-
-                                @if ($errors->has('FullName'))
-                                <span class="error">{{ $errors->first('FullName') }}</span>
+                                @if ($errors->has('fullname'))
+                                <span class="error">{{ $errors->first('fullname') }}</span>
                                 @endif
                             </div><br>
 
@@ -91,58 +86,39 @@
                                 <span class="error">{{ $errors->first('email') }}</span>
                                 @endif
                             </div><br> 
+                            
 
-                            <?php $userType = ["CASHIER","WAREHOUSE","ATTENDANT","SUPERVISOR","MANAGER","ADMIN","SERVICE_CENTER"]; ?>
+                            <?php if(!empty($info)): ?>
+                            <input type="hidden" name="user_id" value="<?= ($info->id); ?>">
+                         <?php endif; ?>
+                         
 
-                            <div class="form-label-group">
-                                <select class="form-control" name="UserType" id="UserType" require="" onchange="return GetUserType(this.value)" >
-                                    <option value="">--Select user type</option>
-                                    <?php foreach($userType as $item): ?>
-                                      <option <?= @$info->UserType==$item?"selected":null; ?> value="<?= $item; ?>"><?= $item; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div><br>
+
+
 
                         </div>
 
                         <div class="col-md-6">
 
-                            <p style="font-size:1.2em">Acumatica Credentials</p>
+                            <p style="font-size:1.2em"> Credentials</p>
 
                             <div class="form-label-group">
-                                <input type="text" name="acumatica_username" value="<?= !empty($info)?$info->acumatica_username:null; ?>"  id="inputEmail" class="form-control" placeholder="Acumatica Username" required="">
-    
-                                @if ($errors->has('acumatica_username'))
-                                <span class="error">{{ $errors->first('acumatica_username') }}</span>
+                                <input type="text" id="inputName" value="<?= !empty($info)?$info->username:null; ?>" required="" name="username" class="form-control" placeholder="Username" autofocus>
+   
+                                @if ($errors->has('username'))
+                                <span class="error">{{ $errors->first('username') }}</span>
                                 @endif
                             </div><br>
-                            
+   
+                                                
                             <div class="form-label-group">
-                                <input type="text" name="acumatica_password" value="<?= !empty($info)?$info->acumatica_password:null; ?>"  class="form-control" required="" placeholder="Acumatica Password" >
-    
-                                @if ($errors->has('acumatica_password'))
-                                <span class="error">{{ $errors->first('acumatica_password') }}</span>
-                                @endif
-                            </div><br>
+                               <input type="password" name="password"  <?= empty($info)?"required=''":null; ?> id="inputPassword" class="form-control" placeholder="Password" >
+   
+                               @if ($errors->has('password'))
+                               <span class="error">{{ $errors->first('password') }}</span>
+                               @endif
+                           </div><br>
 
-                            <div class="form-label-group">
-                                <select class="form-control" name="ShowRoomID" id="ShowRoomID" required>
-                                    <option value="">--Select show room</option>
-                                    <?php if(!empty($showroom)): ?>
-                                    <?php foreach($showroom as $item): ?>
-                                    <option <?= @$info->ShowRoomID==$item->ID?"selected":null; ?> value="<?= $item->ID; ?>"><?= $item->name; ?></option>
-                                    <?php endforeach; ?>
-                                    <?php endif; ?>
-                                </select>
-                            </div><br>
-
-                            <div class="form-label-group acumatica_SalespersonID" style='<?= !empty($info->acumatica_SalespersonID)?null:'display:none'; ?>'>
-                                <input type="text" name="acumatica_SalespersonID" id="acumatica_SalespersonID" value="<?= !empty($info)?$info->acumatica_SalespersonID:null; ?>"  id="inputEmail" class="form-control" placeholder="Acumatica Sales Person ID">
-    
-                                @if ($errors->has('acumatica_SalespersonID'))
-                                <span class="error">{{ $errors->first('acumatica_SalespersonID') }}</span>
-                                @endif
-                            </div><br>
 
                             <br>
                         </div>
@@ -161,11 +137,6 @@
                                 <th>Name</th>
                                 <th>Username</th>
                                 <th>Email</th>
-                                <th>Show Room</th>
-                                <th>User Type</th>
-                                <th>Acumatica Username</th>
-                                <th>Acumatica Password</th>
-                                <th>Sales Person ID</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -173,15 +144,11 @@
                                 <?php foreach ($list as $row): ?>
                                  <tr style="cursor:pointer" onclick="window.location='{{url('user-edit/'.$row->id)}}'">
                                   <td><?= $row->id; ?></td>
-                                  <td><?= $row->FullName; ?></td>
+                                  <td><?= $row->fullname; ?></td>
                                   <td><?= $row->username; ?></td>
                                   <td><?= $row->email; ?></td>
-                                  <td><?= $row->ShowRoomName; ?></td>
-                                  <td><?= $row->UserType; ?></td>
-                                  <td><?= $row->acumatica_username; ?></td>
-                                  <td><?= $row->acumatica_password; ?></td>
-                                  <td><?= $row->acumatica_SalespersonID; ?></td>
-                                  <td>
+                                  <td class="text-center">
+                                    <a href="{{url('user-edit/'.$row->id) }}" class="btn btn-success btn-sm">EDIT</a>
                                       <a href="{{url('delete-registration/'. $row->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want perform this action.This action can not undo if you proceed');">DELETE</a>
                                     </td>
                                  </tr>
