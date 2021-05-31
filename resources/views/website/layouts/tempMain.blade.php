@@ -30,6 +30,8 @@
 
     <link rel="icon" href="{{asset('websiteAssets/images/favicon.ico')}}">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     {{-- <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@">
     <meta name="twitter:creator" content="@">

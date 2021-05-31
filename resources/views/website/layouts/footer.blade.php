@@ -121,7 +121,7 @@
 
     <script>
 
-    //$('input[name="daterange"]').daterangepicker();
+    $('.carousel').carousel();
 
     $(function() {
       $('input[name="daterange"]').daterangepicker({

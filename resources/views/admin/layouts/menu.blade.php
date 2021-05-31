@@ -138,6 +138,17 @@
                             </ul>
                         </li>
 
+                        {{-- <li>
+                            <a href="javascript: void(0);">
+                                <i class="icon-people"></i>
+                                <span> Rooms </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{url("admin-location/index")}}">Location List</a></li>
+                            </ul>
+                        </li> --}}
+
 
                         {{-- <li>
                             <a href="javascript: void(0);">

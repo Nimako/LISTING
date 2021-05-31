@@ -24,7 +24,6 @@ class RoomController extends Controller
         else:
             return \Redirect("/");
         endif;
-
     }
 
     public function AddBooking(Request $request){
@@ -66,6 +65,15 @@ class RoomController extends Controller
         $data['list'] = DB::table("v_carts")->where("uuid",$booking_id)->get();
         
         return view("website/room/checkout",$data);
+    }
+
+
+    //Get room images
+    public function GetRoomImages(Request $request){ 
+
+        $data["info"] = Property::where('id', $request->roomID)->first();
+
+        return view("website/room/ImagePreview",$data);
     }
 
 
