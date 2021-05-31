@@ -342,7 +342,8 @@
 
         if(priceIDArray.indexOf(obj.pricingID) !== -1){
 
-             alert("Array Exist");
+             //alert("Array Exist");
+             
         }else{
 
             var totalBalance =  $("#totalPrice").val();
@@ -442,8 +443,6 @@
 
 
     function GetImages(id){
-
-        alert(id);
 
         $.ajaxSetup({
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
