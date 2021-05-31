@@ -233,7 +233,7 @@
                 </div>
 
                 <div class="col-md-3 mt-12">
-                    <div class="primary-sidebar-inner" style="">
+                    <div class="primary-sidebar-inner" style="position:fixed">
                         <div class="card mb-4">
                             <div class="card-body px-4 py-3">
 

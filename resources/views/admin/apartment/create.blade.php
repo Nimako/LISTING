@@ -233,12 +233,12 @@ tinymce.init({
                                     <section class="col-md-6">
 
                                         <div class="form-group">
-                                            <label>Featured Image (1200 x 8000)</label>
+                                            <label>Featured Image (1200 x 800)</label>
                                             <input type="file"   class="form-control" name="featured_image" accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                             <?php 
                                             if(!empty($info->featured_image)): ?>
                                              <a href="{{asset("storage/".$info->featured_image)}}" target="_bank">
-                                            <img src="{{asset("storage/".$info->featured_image)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                               <img src="{{asset("storage/".$info->featured_image)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                              </a>
                                              <a href="{{url("admin-location/delete/".$info->id."?type=featured_image&path=".$info->featured_image)}}">Delete</a>
                                             <?php endif; ?>
@@ -249,7 +249,7 @@ tinymce.init({
                                     <section class="col-md-6">
 
                                         <div class="form-group">
-                                            <label>Room Images  (1200 x 8000)</label>
+                                            <label>Room Images  (1200 x 800)</label>
                                             <input type="file" multiple="" class="form-control" name="images_paths[]">
                                             <?php  if(!empty($info->images_paths)): ?>
                                             <?php  $images_paths = json_decode($info->images_paths,true); ?>

@@ -50,6 +50,8 @@ class ApartmentController extends Controller
     public function Detail($id){
         
         if($data['room'] = Property::where("uuid",$id)->first()){
+
+          $data['pricing'] = Pricing::where("property_id", $data['room']->id)->get();
         
           $data['amenities'] = Amenity::all();
 
@@ -64,7 +66,6 @@ class ApartmentController extends Controller
     public function Store(Request $request)
     {
        
-
         $validator = Validator::make($request->all(), [
             'location_id' => 'required',
             'room_name'   => 'required',
@@ -207,6 +208,16 @@ class ApartmentController extends Controller
        
         }
 
+    }
+
+
+    function DeleteRoomImage($pricing_id){
+        
+        $price = Pricing::find($pricing_id);
+
+        $price->delete();
+
+        return back()->with('success', 'Price deleted successfully');
     }
 
  

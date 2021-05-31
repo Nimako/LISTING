@@ -75,6 +75,8 @@ use App\Http\Controllers\HomePageController;
                Route::post('/update', [ApartmentController::class, 'Update']);
                Route::get('/detail/{id}',  [ApartmentController::class,'Detail']);
                Route::get('/delete/{id}',  [ApartmentController::class,'DeleteImage']);
+               Route::get('/room-images/{id}',  [ApartmentController::class,'DeleteRoomImage']);
+
           });
 
 
