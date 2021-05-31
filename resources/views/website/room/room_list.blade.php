@@ -44,7 +44,7 @@
     <section class="pt-8 pb-11 bg-gray-01">
         <div class="container-fluid">
 
-          <form action="{{url("AddBooking")}}" method="POST">
+          <form action="{{url("AddBooking")}}" method="POST" onsubmit="return SubmitBooking()">
             @csrf
             <div class="row">
 
@@ -226,7 +226,7 @@
                 </div>
 
                 <div class="col-md-3 mt-12">
-                    <div class="primary-sidebar-inner">
+                    <div class="primary-sidebar-inner" style="">
                         <div class="card mb-4">
                             <div class="card-body px-4 py-3">
 
@@ -248,7 +248,7 @@
 
                                  <p>
                                      {{-- <p class="text-center" id="">2 Guests</p> --}}
-                                     <p class="text-center h4 pt-0">USD <span id="totalPriceText">0.00</span></p>
+                                     <p class="text-center h5 pt-0">USD <span id="totalPriceText">0.00</span></p>
 
                                      <input type="hidden" id="totalPrice" name="totalPrice" value="0">
 
@@ -259,7 +259,11 @@
                                      
                                  </table>
 
-                                <button type="submit" class="btn btn-primary btn-lg btn-block shadow-none mt-4">
+                                 <hr>
+
+                                 <p class="text-center h4 pt-0">Total: USD <span id="GrandTotal">0.00</span></p>
+
+                                <button type="submit" id="bookBtn" class="btn btn-primary btn-lg btn-block shadow-none mt-4">
                                     Book Now
                                 </button>
                             </div>
@@ -325,12 +329,15 @@
         }else{
 
             var totalBalance =  $("#totalPrice").val();
+            var totalNights  =  $(".NumNights").val();
 
             $("#totalPrice").val(Number(totalBalance)+Number(obj.price));
             $("#totalPriceText").text(Number(totalBalance)+Number(obj.price));
 
-            priceIDArray.push(obj.pricingID);
+            $("#GrandTotal").text( Number($("#totalPrice").val()) * Number(totalNights));
 
+
+            priceIDArray.push(obj.pricingID);
 
             //alert(obj.pricingID);
 
@@ -353,11 +360,12 @@
         $("#cartID"+pricingID).remove();
 
         var totalBalance =  $("#totalPrice").val();
-
-        //alert(price);
+        var totalNights  =  $(".NumNights").val();
 
         $("#totalPrice").val(Number(totalBalance)-Number(price));
         $("#totalPriceText").text(Number(totalBalance)-Number(price));
+
+        $("#GrandTotal").text(Number($("#totalPrice").val())*Number(totalNights));
 
         console.log(priceIDArray); 
     }
@@ -379,9 +387,14 @@
 
             
             var totalBalance =  $("#totalPrice").val();
+            var totalNights  =  $(".NumNights").val();
+
             if(Number(totalBalance)>0){
                $("#totalPrice").val(Number(totalBalance)+Number(value));
                $("#totalPriceText").text(Number(totalBalance)+Number(value)); 
+
+               $("#GrandTotal").text( Number($("#totalPrice").val()) * Number(totalNights));
+
             }
 
         }else{
@@ -392,13 +405,22 @@
             $("#guest"+roomID).text(Number(currentGuest)-Number(1));
 
             var totalBalance =  $("#totalPrice").val();
+            var totalNights  =  $(".NumNights").val();
+
             if(Number(totalBalance)>0){
                $("#totalPrice").val(Number(totalBalance)-Number(value));
                $("#totalPriceText").text(Number(totalBalance)-Number(value)); 
+               $("#GrandTotal").text(Number($("#totalPrice").val()) * Number(totalNights));
             }
         }
+    }
 
-     
+    function SubmitBooking(){
+
+        $("#bookBtn").attr("disabled","disabled").text('Submiting...');
+
+        return true;
+
     }
 
 </script>

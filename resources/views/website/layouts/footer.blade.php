@@ -145,6 +145,9 @@
 
          GetNights(start.format('MM/DD/YYYY'),end.format('MM/DD/YYYY'));
 
+         var totalNights  =  $(".NumNights").val();
+         $("#GrandTotal").text(Number($("#totalPrice").val())*Number(totalNights));
+
         console.log("A new date selection was made: " + start.format('YYYY-MMMM-DD') + ' to ' + end.format('YYYY-MMMM-DD'));
       });
       

@@ -36,8 +36,6 @@ class RoomController extends Controller
             foreach($request->input('pricingID') as $key => $value){
                 $price = Pricing::where(['id'=>$value])->first();
 
-                $additional_guest =  !empty($request->additional_guest)?count($request->additional_guest):null;
-
                 Cart::create([
                     'created_by'       => null, 
                     'updated_by'       => null, 
@@ -45,14 +43,20 @@ class RoomController extends Controller
                     'property_id'      => $price->property_id,
                     'price'            => $price->price,
                     'guest'            => $price->guest,
-                    'additional_guest' => $additional_guest,
                     'total'            => null,
                     'total_night'      => $request->NumNights,
                     'check_in'         => $request->checkIn,
                     'check_out'        => $request->checkOut,     
                 ]);
             }
+
+            if(!empty($request->additional_guest)){    
+                foreach($request->input('additional_guest') as $key => $value){
+                    Cart::where(['uuid'=>$uuid,'property_id'=>$value])->update(['additional_guest' => count($request->additional_guest)]);
+                }
+            }
         }
+        
         return \Redirect("checkOut/".$uuid);
     }
 

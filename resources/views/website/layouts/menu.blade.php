@@ -8,8 +8,10 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg px-0">
                     <a class="navbar-brand" href="{{url('/')}}">
-                        <img src="{{asset('websiteAssets/images/logo.png')}}" alt="HomeID" class="d-none d-lg-inline-block">
-                        <img src="{{asset('websiteAssets/images/logo-white.png')}}" alt="HomeID" class="d-inline-block d-lg-none">
+                        <h3>Staylug</h3>
+
+                        {{-- <img src="{{asset('websiteAssets/images/logo.png')}}" alt="staylug" class="d-none d-lg-inline-block">
+                        <img src="{{asset('websiteAssets/images/logo-white.png')}}" alt="HomeID" class="d-inline-block d-lg-none"> --}}
                     </a>
                     <div class="d-flex d-lg-none ml-auto">
                         <a class="mr-4 position-relative text-white p-2" href="#">

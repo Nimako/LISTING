@@ -61,10 +61,10 @@
                                           <section class="col">
                                             <?php  if(!empty($item->additional_guest)): ?>
                                               <p class="h6">
-                                                $ <?= $total = (@$item->price * $item->total_night) + ($item->additional_guest * explode("****", $item->additional_guest_price)[1]);  ?>
+                                                $ <?= $total = + (@$item->price * $item->total_night) + (($item->additional_guest * explode("****", $item->additional_guest_price)[1])*$item->total_night);  ?>
                                               </p>
                                               <?php else: ?>
-                                                <p class="h6">US$ <?= $total = (@$item->price)*$item->total_night;  ?>
+                                                <p class="h6">US$ <?= $total = + (@$item->price)*$item->total_night;  ?>
                                                 </p>
                                               <?php endif; ?>
 
