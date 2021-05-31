@@ -29,6 +29,13 @@
     .custom-control-label::before {
         background-color: #ed7373;
     }
+
+    .modal-fullscreen .modal-content {
+  background: transparent;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 </style>
     
 <main id="content">

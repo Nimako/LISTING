@@ -9,6 +9,23 @@ tinymce.init({
 });
 </script>
 
+<style>
+.nav-item {
+    border:rgb(234, 234, 240) solid 1px;
+    padding:0 2em ;
+    background-color: #eaf2fa;
+
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #64b0f2;
+}
+
+.nav-pills .nav-link {
+    border-radius: 0px;
+}
+</style>
+
 <div class="content-page">
     <div class="content">
         
@@ -62,11 +79,25 @@ tinymce.init({
                         <input type="hidden" name="location_id" value="<?= @$location->id; ?>">
                         <input type="hidden" name="location_name" value="<?= @$location->location; ?>">
 
+                        <ul class="nav nav-pills mb-3" id="pills-tab"" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Pricing</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                              <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Room Images</a>
+                            </li>
+                          </ul>
+                          <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <!--- -------------------------------------------------------------------------------------->
+                                
                          <div class="pl-0 row">
 
-                            <div class="main-profile-overview col-md-6">
                           
-                             <div class="col-md-12">
+                             <div class="col-md-6">
                             
                                  <div class="form-group">
                                     <label>Room Name</label>
@@ -88,23 +119,17 @@ tinymce.init({
                                         <input type="radio" value="0" id="free_cancellation2" name="free_cancellation" class="custom-control-input">
                                         <label class="custom-control-label" for="free_cancellation2">NO</label>
                                     </div>
-                                 </div><br><br>
+                                 </div>
 
                                  <div class="form-group">
                                     <label>Total Guest</label>
                                     <input required id="total_guest_capacity" name="total_guest_capacity"  class="form-control" min="0" type="number">
                                  </div><br> <br>
-                                 <label class="text-danger">Additional Guest</label>
-                                 <section  class="form-row"> 
-                                    <div class="col">
-                                        <label>Number of guest</label>
-                                        <input required="" id="guest" name="addition_guest" value="0" class="form-control mt-1" placeholder="Number of guest" type="number" min="1">
-                                    </div>
-                                        <div class="col">
-                                            <label>Price per guest ($)</label>
-                                            <input required="" id="addition_guest_price"  name="addition_guest_price" placeholder="0.00" class="form-control mt-1" type="text">                                              
-                                    </div>
-                                 </section><br><br>
+
+                             
+                            </div>
+
+                            <section class="col-md-6">
 
                                  <div class="form-group">
                                     <label>Total Bathroom</label>
@@ -125,37 +150,6 @@ tinymce.init({
                                     <div id="bedType"></div>
                                 </div>
 
-                             
-
-                             </div>
-
-                            </div>
-
-                            <div class="main-profile-overview col-md-6">
-    
-                               <div class="col-md-12"><br>
-
-                                <div class="form-group">
-                                    <label>
-                                       Price Per Guest ($)
-                                      <a href="javascript:void"><i onclick="AddPrice()" class="fa fa-plus-circle fa-1x pull-right"></i></a>
-                                    </label>
-                                    <div id="PriceBody"></div>
-                                </div>
-                                <br><br>
-
-                                
-                                
-                                <div class="form-group">
-                                    <label>Discount($) ( for 3 or more nights)</label>
-                                    <input required id="discount" name="discount" value="0"  class="form-control" min="0" type="number">
-                                 </div>
-
-
-                                <div class="form-group">
-
-                                </div>
-
                                 <div class="form-group">
                                     <label>Amenities (crt + mounse click to select)</label>
                                     <select class="form-control amenities" name="amenities[]" multiple="multiple">
@@ -165,53 +159,127 @@ tinymce.init({
                                             <?php endforeach; ?>   
                                             <?php endif; ?>                     
                                     </select>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Featured Image</label>
-                                    <input type="file"   class="form-control" name="featured_image" accept="image/x-png,image/gif,image/jpeg,image/jpg">
-                                    <?php 
-                                    if(!empty($info->featured_image)): ?>
-                                     <a href="{{asset("storage/".$info->featured_image)}}" target="_bank">
-                                    <img src="{{asset("storage/".$info->featured_image)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
-                                     </a>
-                                     <a href="{{url("admin-location/delete/".$info->id."?type=featured_image&path=".$info->featured_image)}}">Delete</a>
-                                    <?php endif; ?>
-                                   </div>
-
-                                <div class="form-group">
-                                    <label>Room Images</label>
-                                    <input type="file" multiple="" class="form-control" name="images_paths[]">
-                                    <?php  if(!empty($info->images_paths)): ?>
-                                    <?php  $images_paths = json_decode($info->images_paths,true); ?>
-                                    <?php foreach($images_paths as $item): ?>
-                                    <a href="{{asset("storage/".$item)}}" target="_bank">
-                                        <img src="{{asset("storage/".$item)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
-                                    </a>
-                                     <br>
-                                    <a href="{{url("admin-location/delete/".$info->id."?type=images_paths&path=".$item)}}">Delete
-                                    </a>
-                                    <?php endforeach; ?>
-                                    <?php endif; ?>
                                 </div>
 
 
-                                </div>
+                            </section>
 
-                              </div>
+
+
  
                              </div>
 
+                        
+                                <!--- -------------------------------------------------------------------------------------->
 
-                           <button type="reset" class="btn btn-danger btn-md float-right" >Rest</button>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-                           <?php if(!empty($info)): ?>
-                           <button type="submit" class="btn btn-success btn-md">Save Changes</button>
-                           <?php else: ?>
-                           <button type="submit" class="btn btn-success btn-md">Save</button>
-                           <?php endif; ?>
+                            <!--- -----------------------PRICING------------------------------------------>
+
+                            <div class="pl-0 row">
+
+                                <section class="col-md-6">
+    
+                                     <div class="form-group">
+                                         <label>
+                                            Price Per Guest ($)
+                                           <a href="javascript:void"><i onclick="AddPrice()" class="fa fa-plus-circle fa-1x pull-right"></i></a>
+                                         </label>
+                                         <div id="PriceBody"></div>
+                                     </div>
+                                     <br>
+     
+                                     <div class="form-group">
+                                         <label>Discount($) ( for 3 or more nights)</label>
+                                         <input required id="discount" name="discount" value="0"  class="form-control" min="0" type="number">
+                                      </div><br>
+
+     
+                                </section>
+
+                                <section class="col-md-6">
+
+                                    <label class="text-danger">Additional Guest</label>
+                                    <section  class="form-row"> 
+                                       <div class="col">
+                                           <label>Number of additional guest</label>
+                                           <input required="" id="guest" name="addition_guest" value="0" class="form-control mt-1" placeholder="Number of guest" type="number" min="1">
+                                       </div>
+                                           <div class="col">
+                                               <label>Price per each guest ($)</label>
+                                               <input required="" id="addition_guest_price"  name="addition_guest_price" placeholder="0.00" class="form-control mt-1" type="text">                                              
+                                       </div>
+                                    </section><br><br>
+
+                                </section>
+
+                                
+                            </div>
+
+
+                             <!--- -------------------------------------------------------------------------->
+
+
+
+                            </div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+                                
+                            <!--- -----------------------PRICING------------------------------------------>
+
+                                <div class="pl-0 row">
+
+                                    <section class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label>Featured Image (1200 x 8000)</label>
+                                            <input type="file"   class="form-control" name="featured_image" accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                            <?php 
+                                            if(!empty($info->featured_image)): ?>
+                                             <a href="{{asset("storage/".$info->featured_image)}}" target="_bank">
+                                            <img src="{{asset("storage/".$info->featured_image)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                             </a>
+                                             <a href="{{url("admin-location/delete/".$info->id."?type=featured_image&path=".$info->featured_image)}}">Delete</a>
+                                            <?php endif; ?>
+                                           </div>
+
+                                    </section>
+        
+                                    <section class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label>Room Images  (1200 x 8000)</label>
+                                            <input type="file" multiple="" class="form-control" name="images_paths[]">
+                                            <?php  if(!empty($info->images_paths)): ?>
+                                            <?php  $images_paths = json_decode($info->images_paths,true); ?>
+                                            <?php foreach($images_paths as $item): ?>
+                                            <a href="{{asset("storage/".$item)}}" target="_bank">
+                                                <img src="{{asset("storage/".$item)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                            </a>
+                                             <br>
+                                            <a href="{{url("admin-location/delete/".$info->id."?type=images_paths&path=".$item)}}">Delete
+                                            </a>
+                                            <?php endforeach; ?>
+                                            <?php endif; ?>
+                                        </div>
+
+                                     </section>
+                                </div>
+
+                            </div>
+                          </div>
+
+                          <button type="reset" class="btn btn-danger btn-md float-right" >Rest</button>
+
+                          <?php if(!empty($info)): ?>
+                          <button type="submit" class="btn btn-success btn-md">Save Changes</button>
+                          <?php else: ?>
+                          <button type="submit" class="btn btn-success btn-md">Save</button>
+                          <?php endif; ?>
+                       
                         </form>
+                      </div>
                       </div>
                    </div>
 

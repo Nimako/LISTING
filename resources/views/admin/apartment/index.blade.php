@@ -39,7 +39,7 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Location</th>
+                                <th>Title</th>
                                 <th>Bathroom</th>
                                 <th>Guest</th>
                                 <th>Free Cancellation</th>
@@ -61,9 +61,11 @@
                                 <td><?= str_replace('"]',', ',@$item->bed_name); ?></td>
 
                                 <th class="text-center">
-                                   
+                                    <a class="btn btn-danger btn-sm" onclick="return confirm('Are sure you want to delete this record ? this action can not be undo')"  href="{{url('admin-apartment/detail/'.$item->uuid)}}">Delet</a>
+                                    
                                     <a class="btn btn-success btn-sm" href="{{url('admin-apartment/detail/'.$item->uuid)}}">View</a>
                                 </th>
+                                
                             </tr>
                             <?php endforeach; ?>
                             <?php endif; ?>

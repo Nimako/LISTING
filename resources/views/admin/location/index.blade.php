@@ -41,7 +41,6 @@
                                 <th>#</th>
                                 <th>Location</th>
                                 <th>Apartment Name</th>
-                                <th class="text-center">Total Rooms</th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -52,8 +51,8 @@
                                 <td><?= $x++; ?></td>
                                 <td><?= $item->location; ?></td>
                                 <td><?= $item->apartmentName; ?></td>
-                                <td class="text-center"><a class="btn btn-danger btn-sm" href="{{url("admin-apartment/index/".$item->uuid)}}">2</td>
                                 <th class="text-center">
+                                    <a class="btn btn-danger btn-sm" href="{{url("admin-apartment/index/".$item->uuid)}}">View Rooms</a>
                                     <a class="btn btn-primary btn-sm" href="{{url('admin-apartment/create/'.$item->uuid)}}">Add Rooms</a>
                                     <a class="btn btn-success btn-sm" href="{{url('admin-location/detail/'.$item->uuid)}}">View</a>
                                 </th>
