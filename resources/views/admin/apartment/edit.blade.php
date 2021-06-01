@@ -72,8 +72,8 @@ tinymce.init({
                    <div class="card mg-b-20">
                       <div class="card-body">
 
-                          <form method="post" action="{{ url('admin-apartment/update') }}" enctype="multipart/form-data">
-                          @csrf
+                           <form method="post" action="{{ url('admin-apartment/update') }}" enctype="multipart/form-data">
+                           @csrf
    
                            <input type="hidden" name="id" value="<?= @$room->uuid; ?>">
    
@@ -149,14 +149,14 @@ tinymce.init({
                                       $bed_name = json_decode($room->bed_name);
                                     ?>
                                     <?php foreach($bed_name as $bed): ?>
-                                        <input required id="bed_name" value="<?= $bed; ?>" name="bed_name[]"  class="form-control mt-1" type="text">
+                                        <input  id="bed_name" value="<?= $bed; ?>" name="bed_name[]"  class="form-control mt-1" type="text">
                                         <a  href="{{url("admin-apartment/delete-bed/".$room->id."?type=bed&path=".$bed)}}">
                                          <i class="fa fa-minus-circle fa-1x pull-right">Remove</i>
                                         </a>
                                     <?php endforeach; ?>   
                                     <?php endif; ?> <br><br>
 
-                                    <input required id="bed_name" name="bed_name[]"  class="form-control" type="text" placeholder="Eg. 1 Queen bed">
+                                    <input  id="bed_name" name="bed_name[]"  class="form-control" type="text" placeholder="Eg. 1 Queen bed">
                                     <div id="bedType"></div>
                                 </div>
 

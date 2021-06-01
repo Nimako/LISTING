@@ -50,7 +50,7 @@
 
                                             <p class="h6"><b><?= @$item->room_name; ?></b></p>
 
-                                            <p><b>Details: </b><?= @$item->total_night ?> ninght, <?= @$item->guest; ?> adults  
+                                            <p><b>Details: </b><?= @$item->total_night ?> night, <?= @$item->guest; ?> adults  
 
                                               <?php if(!empty($item->additional_guest)): ?>
                                               + <?= @$item->additional_guest; ?> extra adults 
