@@ -210,11 +210,40 @@ class ApartmentController extends Controller
 
     }
 
+    public static  function DeleteImage(Request $request, $id){ 
+
+        $path = $request->query("path");
+        $type = $request->query("type");
+ 
+        $result =  Property::find($id);
+ 
+        if($type=="featured_image"){
+            if(unlink(storage_path('app/public/'.$path))){
+                Property::where(['id'=>$id])->update([
+                    'featured_image'   => "",
+                ]);
+            }
+        }
+ 
+
+       if($type=="images_paths"){
+         $arrayData = json_decode($result->images_paths, true);
+         if(unlink(storage_path('app/public/'.$path))){
+             $arrayPathLeft = self::unsetArray($path,$arrayData);
+             Property::where(['id'=>$id])->update([
+                 'images_paths'   => json_encode($arrayPathLeft),
+             ]);
+         }
+       }
+ 
+ 
+       return back()->with('success', 'Images deleted successfully');
+     }
+
 
     function DeleteRoomImage($pricing_id){
         
         $price = Pricing::find($pricing_id);
-
         $price->delete();
 
         return back()->with('success', 'Price deleted successfully');
@@ -222,6 +251,31 @@ class ApartmentController extends Controller
 
  
 
+    public static  function unsetArray($element,$arrayStack){ 
+        //delete element in array by value 
+        if (($key = array_search($element, $arrayStack)) !== false) {
+            unset($arrayStack[$key]);
+        }
+        return $arrayStack;
+    }
+
+    public static  function addToArray($element,$arrayStack){ 
+        //delete element in array by value 
+        if (($key = array_search($element, $arrayStack)) !== false) {
+            unset($arrayStack[$key]);
+        }
+        return $arrayStack;
+    }
+
+
+    public static function uploadSingleImage($fileData,$fileName){
+
+        $fileName = trim($fileName."_".md5(Auth()->User()->id.time())).'.'.$fileData->extension();  
+   
+        $fileData->move(public_path('uploads'), $fileName);
+
+        return "uploads/".$fileName;
+    }
 
 
 }

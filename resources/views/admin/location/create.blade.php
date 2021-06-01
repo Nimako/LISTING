@@ -110,7 +110,7 @@ tinymce.init({
                                <div class="col-md-12"><br>
 
                                 <div class="form-group">
-                                    <label>Featured Image (720 x 440 pixel)</label>
+                                    <label>Featured Image (560 x 720 pixel)</label>
                                     <input type="file" multiple=""  class="form-control" name="featuredImage" accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                     <?php 
                                     if(!empty($info->featuredImage)): ?>

@@ -253,38 +253,44 @@ tinymce.init({
 
                                 <div class="pl-0 row">
 
-                                    <section class="col-md-6">
+                                    <section class="col-md-6"><br>
 
                                         <div class="form-group">
                                             <label>Featured Image (1200 x 800)</label>
-                                            <input type="file"   class="form-control" name="featured_image" accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                            <input type="file"   class="form-control" name="featured_image" accept="image/x-png,image/gif,image/jpeg,image/jpg"><br>
+
                                             <?php 
-                                            if(!empty($info->featured_image)): ?>
-                                             <a href="{{asset("storage/".$info->featured_image)}}" target="_bank">
-                                            <img src="{{asset("storage/".$info->featured_image)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                            if(!empty($room->featured_image)): ?>
+                                             <a href="{{asset("storage/".$room->featured_image)}}" target="_bank">
+                                            <img src="{{asset("storage/".$room->featured_image)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                              </a>
-                                             <a href="{{url("admin-location/delete/".$info->id."?type=featured_image&path=".$info->featured_image)}}">Delete</a>
+                                             <a href="{{url("admin-apartment/delete/".$room->id."?type=featured_image&path=".$room->featured_image)}}">Delete</a>
                                             <?php endif; ?>
-                                           </div>
+                                        </div>
+
+
 
                                     </section>
         
                                     <section class="col-md-6">
 
-                                        <div class="form-group">
+                                        <div class="form-group"><br>
                                             <label>Room Images  (1200 x 800)</label>
-                                            <input type="file" multiple="" class="form-control" name="images_paths[]">
-                                            <?php  if(!empty($info->images_paths)): ?>
-                                            <?php  $images_paths = json_decode($info->images_paths,true); ?>
-                                            <?php foreach($images_paths as $item): ?>
-                                            <a href="{{asset("storage/".$item)}}" target="_bank">
-                                                <img src="{{asset("storage/".$item)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
-                                            </a>
-                                             <br>
-                                            <a href="{{url("admin-location/delete/".$info->id."?type=images_paths&path=".$item)}}">Delete
-                                            </a>
-                                            <?php endforeach; ?>
-                                            <?php endif; ?>
+                                            <input type="file" multiple="" class="form-control" name="images_paths[]"><br>
+
+                                            <center>
+                                                <?php if(!empty($room->images_paths)): ?>
+                                                <?php  $images_paths = json_decode($room->images_paths,true); ?>
+                                                <?php foreach($images_paths as $item): ?>
+                                                 <a href="{{asset("storage/".$item)}}" target="_bank">
+                                                    <img src="{{asset("storage/".$item)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                                  </a>
+                                                    <a href="{{url("admin-apartment/delete/".$room->id."?type=images_paths&path=".$item)}}">Delete
+                                                    </a><br>
+                                                <?php endforeach; ?>
+                                                <?php endif; ?> <br>
+                                            </center>
+                                            
                                         </div>
 
                                      </section>
