@@ -200,15 +200,10 @@ class ApartmentController extends Controller
                 $postData['images_paths'] = json_encode($imagesPaths);
             }
             
-        if(Property::where(['id'=>$lastID])->update($postData)){
+            
+            Property::where(['uuid'=>$uuid])->update($postData);
 
             return back()->with('success', 'Property saved successfully');
-
-        }else{
-          return back()->with('success', 'Property failed to upload');
-       
-        }
-
     }
 
     public static  function DeleteImage(Request $request, $id){ 

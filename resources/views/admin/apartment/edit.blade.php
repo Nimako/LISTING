@@ -156,7 +156,6 @@ tinymce.init({
                                     <?php endforeach; ?>   
                                     <?php endif; ?> <br><br>
 
-                                    <input  id="bed_name" name="bed_name[]"  class="form-control" type="text" placeholder="Eg. 1 Queen bed">
                                     <div id="bedType"></div>
                                 </div>
 
