@@ -54,7 +54,7 @@
                                 <th class="text-center">
                                     <a class="btn btn-danger btn-sm" href="{{url("admin-apartment/index/".$item->uuid)}}">View Rooms</a>
                                     <a class="btn btn-primary btn-sm" href="{{url('admin-apartment/create/'.$item->uuid)}}">Add Rooms</a>
-                                    <a class="btn btn-success btn-sm" href="{{url('admin-location/detail/'.$item->uuid)}}">View</a>
+                                    <a class="btn btn-success btn-sm" href="{{url('admin-location/detail/'.$item->uuid)}}">Edit Location</a>
                                 </th>
                             </tr>
                             <?php endforeach; ?>

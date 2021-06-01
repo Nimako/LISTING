@@ -72,17 +72,15 @@ tinymce.init({
                    <div class="card mg-b-20">
                       <div class="card-body">
 
-                    
-
-                         <form method="post" action="{{ url('admin-apartment/update') }}" enctype="multipart/form-data">
-                            @csrf
+                          <form method="post" action="{{ url('admin-apartment/update') }}" enctype="multipart/form-data">
+                          @csrf
    
                            <input type="hidden" name="id" value="<?= @$room->uuid; ?>">
    
                            <input type="hidden" name="location_id" value="<?= @$room->location_id; ?>">
                            <input type="hidden" name="location_name" value="<?= @$location->location; ?>">
 
-                        <ul class="nav nav-pills mb-3" id="pills-tab"" id="myTab" role="tablist">
+                           <ul class="nav nav-pills mb-3" id="pills-tab"" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
                             </li>
@@ -93,13 +91,13 @@ tinymce.init({
                               <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Room Images</a>
                             </li>
                           </ul>
+
                           <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <!--- -------------------------------------------------------------------------------------->
                                 
                          <div class="pl-0 row">
 
-                          
                              <div class="col-md-6">
                             
                                  <div class="form-group">
@@ -127,12 +125,10 @@ tinymce.init({
                                  <div class="form-group">
                                     <label>Total Guest</label>
                                     <input required id="total_guest_capacity" value="<?= @$room->total_guest_capacity; ?>" name="total_guest_capacity"  class="form-control" min="0" type="number">
-                                 </div><br> <br>
-
-                             
+                                 </div><br><br>
                             </div>
 
-                            <section class="col-md-6">
+                               <section class="col-md-6">
 
                                  <div class="form-group">
                                     <label>Total Bathroom</label>
@@ -149,6 +145,17 @@ tinymce.init({
                                        Add Bed
                                       <a href="javascript:void"><i onclick="Addbed()" class="fa fa-plus-circle fa-1x pull-right"></i></a>
                                     </label>
+                                    <?php if(!empty($room->bed_name)):
+                                      $bed_name = json_decode($room->bed_name);
+                                    ?>
+                                    <?php foreach($bed_name as $bed): ?>
+                                        <input required id="bed_name" value="<?= $bed; ?>" name="bed_name[]"  class="form-control mt-1" type="text">
+                                        <a  href="{{url("admin-apartment/delete-bed/".$room->id."?type=bed&path=".$bed)}}">
+                                         <i class="fa fa-minus-circle fa-1x pull-right">Remove</i>
+                                        </a>
+                                    <?php endforeach; ?>   
+                                    <?php endif; ?> <br><br>
+
                                     <input required id="bed_name" name="bed_name[]"  class="form-control" type="text" placeholder="Eg. 1 Queen bed">
                                     <div id="bedType"></div>
                                 </div>
@@ -163,7 +170,6 @@ tinymce.init({
                                             <?php endif; ?>                     
                                     </select>
                                 </div>
-
 
                             </section>
 
@@ -202,14 +208,13 @@ tinymce.init({
                                         <div class="col">
                                             <input required="" id="price" value="<?= $price->price; ?>" name="price[]" placeholder="0.00" class="form-control mt-1" type="text"> 
                                             <div class="col">
-                                                <a href="{{url('admin-apartment/room-images/'.$price->id)}}"><i class="fa fa-minus-circle fa-1x pull-right">Remove</i></a>
+                                                <a href="{{url('admin-apartment/delete-room-price/'.$price->id)}}"><i class="fa fa-minus-circle fa-1x pull-right">Remove</i></a>
                                             </div> 
                                         </div>
                                     </section>
 
                                     <?php endforeach; ?>
                                     <?php endif; ?>
-                                   
                                      <br>
      
                                      <div class="form-group">
@@ -234,21 +239,15 @@ tinymce.init({
                                                <input required="" id="addition_guest_price" value="<?= @explode("****",@$room->additional_guest)[1]; ?>"  name="addition_guest_price" placeholder="0.00" class="form-control mt-1" type="text">                                              
                                        </div>
                                     </section><br><br>
-
-                                </section>
-
-                                
+                                </section>                                
                             </div>
 
 
                              <!--- -------------------------------------------------------------------------->
 
-
-
                             </div>
                             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 
-                                
                             <!--- -----------------------PRICING------------------------------------------>
 
                                 <div class="pl-0 row">

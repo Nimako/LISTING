@@ -159,10 +159,11 @@ class ApartmentController extends Controller
             'free_cancellation'     => $request->input("free_cancellation"),
             'total_guest_capacity'  => $request->input("total_guest_capacity"),
             'total_bathrooms'       => $request->input("total_bathrooms"),
-            'bed_name'             => json_encode($request->bed_name),
+            'bed_name'              => json_encode($request->bed_name),
             'num_of_rooms'          => $request->input("num_of_rooms"),
             'amenities'             => json_encode($request->amenities),
-            //'status'                => 1,
+            'additional_guest'      => $request->input("addition_guest") > 0 ?$request->input("addition_guest")."****".$request->input("addition_guest_price"):null,
+            'discount'              => $request->input('discount'),
             'updated_by'            => Auth()->User()->id,
           ];
 
@@ -236,12 +237,29 @@ class ApartmentController extends Controller
          }
        }
  
- 
        return back()->with('success', 'Images deleted successfully');
-     }
+    }
+
+    public static  function DeleteBed(Request $request, $id){ 
+
+        $path = $request->query("path");
+        $type = $request->query("type");
+ 
+        $result =  Property::find($id);
+
+       if($type=="bed"){
+         $arrayData = json_decode($result->bed_name, true);
+             $arrayPathLeft = self::unsetArray($path,$arrayData);
+             Property::where(['id'=>$id])->update([
+                 'bed_name'   => json_encode($arrayPathLeft),
+             ]);
+       }
+ 
+       return back()->with('success', 'Bed deleted successfully');
+    }
 
 
-    function DeleteRoomImage($pricing_id){
+    function DeleteRoomPrice($pricing_id){
         
         $price = Pricing::find($pricing_id);
         $price->delete();
