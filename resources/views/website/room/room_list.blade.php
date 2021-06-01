@@ -74,7 +74,11 @@
                     <div class="py-5 px-4 border rounded-lg shadow-hover-1 bg-white mb-4" data-animate="fadeInUp">
                         <div class="media flex-column flex-sm-row no-gutters" style="">
                             <div class="col-sm-3 mr-sm-5 card border-0 hover-change-image bg-hover-overlay mb-sm-5">
+                                <?php if(!empty($item->featured_image)): ?>
                                 <img src="{{asset('storage/'.$item->featured_image)}}"  class="card-img" alt="" style="height:191px">
+                                <?php else: ?>
+                                <img style="cursor: pointer" src="{{asset('assets/images/featuredlocationDefault.jpg')}}" width="300" height="350" alt="<?= Str::ucfirst($item->location); ?>">
+                                <?php endif; ?>
                                 <div class="card-img-overlay p-2">
                                     <ul
                                         class="list-inline mb-0 d-flex justify-content-center align-items-center h-100 hover-image">
@@ -136,13 +140,17 @@
 
                                     <ul class="list-unstyled mb-0 row no-gutters amenities<?= $item->id; ?>" id="amenities" style="display: none">
                                     <?php
+                                      if(!empty($item->amenities)):
                                       $amenities = json_decode($item->amenities,true); 
                                       foreach($amenities as $amenity):
                                     ?>
                                      <li class="col-md-3 col-2 mb-2" style="font-size:0.8em">
                                          <i class="far fa-check mr-1 text-primary" ></i> <?= trim($amenity); ?>
                                      </li>
-                                    <?php endforeach; ?>                                   
+                                    <?php 
+                                      endforeach; 
+                                      endif;
+                                     ?>                                   
                                     </ul>
                                 </p>
                                 <p>

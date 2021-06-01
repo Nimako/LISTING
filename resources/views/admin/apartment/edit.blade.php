@@ -78,8 +78,7 @@ tinymce.init({
                            <input type="hidden" name="id" value="<?= @$room->uuid; ?>">
    
                            <input type="hidden" name="location_id" value="<?= @$room->location_id; ?>">
-                           <input type="hidden" name="location_name" value="<?= @$location->location; ?>">
-
+                           
                            <ul class="nav nav-pills mb-3" id="pills-tab"" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                               <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Details</a>
@@ -218,7 +217,7 @@ tinymce.init({
      
                                      <div class="form-group">
                                          <label>Discount($) ( for 3 or more nights)</label>
-                                         <input required id="discount" value="<?= @$room->discount; ?>" name="discount" value="0"  class="form-control" min="0" type="number">
+                                         <input  id="discount" value="<?= @$room->discount; ?>" name="discount" value="0"  class="form-control" min="0" type="number">
                                       </div><br>
 
      
@@ -231,11 +230,11 @@ tinymce.init({
                                     <section  class="form-row"> 
                                        <div class="col">
                                            <label>Number of additional guest</label>
-                                           <input required="" id="guest" value="<?= @explode("****",@$room->additional_guest)[0]; ?>" name="addition_guest" value="0" class="form-control mt-1" placeholder="Number of guest" type="number" min="1">
+                                           <input ="" id="guest" value="<?= @explode("****",@$room->additional_guest)[0]; ?>" name="addition_guest" value="0" class="form-control mt-1" placeholder="Number of guest" type="number" min="1">
                                        </div>
                                            <div class="col">
                                                <label>Price per each guest ($)</label>
-                                               <input required="" id="addition_guest_price" value="<?= @explode("****",@$room->additional_guest)[1]; ?>"  name="addition_guest_price" placeholder="0.00" class="form-control mt-1" type="text">                                              
+                                               <input  id="addition_guest_price" value="<?= @explode("****",@$room->additional_guest)[1]; ?>"  name="addition_guest_price" placeholder="0.00" class="form-control mt-1" type="text">                                              
                                        </div>
                                     </section><br><br>
                                 </section>                                

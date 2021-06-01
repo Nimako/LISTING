@@ -83,9 +83,9 @@ class ApartmentController extends Controller
             'free_cancellation'     => $request->input("free_cancellation"),
             'total_guest_capacity'  => $request->input("total_guest_capacity"),
             'total_bathrooms'       => $request->input("total_bathrooms"),
-            'bed_name'             => json_encode($request->bed_name),
+            'bed_name'             => !empty($request->bed_name)?json_encode($request->bed_name):null,
             'num_of_rooms'          => $request->input("num_of_rooms"),
-            'amenities'             => json_encode($request->amenities),
+            'amenities'             => !empty($request->amenities)?json_encode($request->amenities):null,
             'additional_guest'      => $request->input("addition_guest") > 0 ?$request->input("addition_guest")."****".$request->input("addition_guest_price"):null,
             'discount'              => $request->input('discount'),
             'status'                => 1,
@@ -159,51 +159,57 @@ class ApartmentController extends Controller
             'free_cancellation'     => $request->input("free_cancellation"),
             'total_guest_capacity'  => $request->input("total_guest_capacity"),
             'total_bathrooms'       => $request->input("total_bathrooms"),
-            'bed_name'              => json_encode($request->bed_name),
             'num_of_rooms'          => $request->input("num_of_rooms"),
-            'amenities'             => json_encode($request->amenities),
             'additional_guest'      => $request->input("addition_guest") > 0 ?$request->input("addition_guest")."****".$request->input("addition_guest_price"):null,
             'discount'              => $request->input('discount'),
             'updated_by'            => Auth()->User()->id,
-          ];
+            'updated_at'            => date('Y-m-d h:i:s')
+        ];
 
-   
+        if(!empty($request->bed_name)){
+            $postData['bed_name'] = json_encode($request->bed_name);
+        }
+
+        if(!empty($request->amenities)){
+            $postData['amenities'] = json_encode($request->amenities);
+        }
+
+        $featured_imagePath = "";
+        $imagesPaths        = [];
+
+        $uuid = $request->input('id');
+        $result =  Property::where(["uuid"=>$uuid])->first();
+
+        $location = Location::where("id",$request->location_id)->first();
+
+        $BasePath = "location/".str_replace(' ', '_', strtolower($location->location))."/".str_replace(' ', '_', strtolower($request->room_name));
         
-            $featured_imagePath = "";
-            $imagesPaths    = [];
+        if ($request->hasfile('featured_image')) {
+            $image = $request->file('featured_image');
+            $filename = 'featured.'.$image->extension();  
+            $path = $image->storeAs($BasePath, $filename, 'public');
+            $postData['featured_image'] = $path;
+        }
 
-            $uuid = $request->input('id');
-            $result =  Property::where(["uuid"=>$uuid])->first();
+        if ($request->hasfile('images_paths')) {
 
-            $BasePath = "location/".str_replace(' ', '_', strtolower($request->location_name))."/".str_replace(' ', '_', strtolower($request->room_name));
+            $imagesPaths = json_decode($result->images_paths, true);
 
-            if ($request->hasfile('featured_image')) {
-                $image = $request->file('featured_image');
-                $filename = 'featured.'.$image->extension();  
+            $images_paths = $request->file('images_paths');
+            $x=1;
+            foreach($images_paths as $image) {
+                $filename = $x.'_'.date("ymdhis").mt_rand(1111,2222).".".$image->extension();  
                 $path = $image->storeAs($BasePath, $filename, 'public');
-                $postData['featured_image'] = $path;
+                $imagesPaths[] = $path;
+                $x++;
             }
+            $postData['images_paths'] = json_encode($imagesPaths);
+        }
+        
 
+        Property::where(['uuid'=>$uuid])->update($postData);
 
-            if ($request->hasfile('images_paths')) {
-
-                $imagesPaths = json_decode($result->images_paths, true);
-
-                $images_paths = $request->file('images_paths');
-                $x=1;
-                foreach($images_paths as $image) {
-                    $filename = $x.'_'.date("ymdhis").mt_rand(1111,2222).".".$image->extension();  
-                    $path = $image->storeAs($BasePath, $filename, 'public');
-                    $imagesPaths[] = $path;
-                    $x++;
-                }
-                $postData['images_paths'] = json_encode($imagesPaths);
-            }
-            
-            
-            Property::where(['uuid'=>$uuid])->update($postData);
-
-            return back()->with('success', 'Property saved successfully');
+        return back()->with('success', 'Property saved successfully');
     }
 
     public static  function DeleteImage(Request $request, $id){ 
