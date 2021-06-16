@@ -12,6 +12,7 @@ use App\Models\Cart;
 use App\Models\Booking;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 
 class RoomController extends Controller
@@ -85,6 +86,24 @@ class RoomController extends Controller
 
     public function AddBooking(Request $request){ 
 
+
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'bail|required',
+            'last_name'  => 'bail|required',
+            'contact_number'  => 'bail|required',
+            'email'      => 'bail|required|email',
+            'email_repeat'      => 'bail|required|email',
+            'contact_number' => 'bail|required',
+        ]);
+
+        if ($validator->fails()) {  
+            return ['statusCode'=>500, 'message'=>$validator->errors()->first()];
+        }
+
+        if($request->email != $request->email_repeat){
+            return ['statusCode'=>500, 'message'=>'Email and second email is not correct'];
+        }
+
         $uuid = Str::uuid();
         $order_no = mt_rand(1000000, 9999999).time();
   
@@ -97,7 +116,6 @@ class RoomController extends Controller
                 'first_name'       => $request->first_name,
                 'last_name'        => $request->last_name,
                 'email'            => $request->email,
-                'email'            => $request->email,
                 'contact_number'   => $request->contact_number,
                 'country'          => $request->country,
                 'comment'          => $request->comment,
@@ -107,7 +125,7 @@ class RoomController extends Controller
             if($query){
                 return ["statusCode"=>200, "orderNumber" => $order_no];
             }else{
-                return ["statusCode"=>300];
+                return ["statusCode"=>500];
             }  
       }
 

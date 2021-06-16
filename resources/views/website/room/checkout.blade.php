@@ -41,7 +41,7 @@
                                       </div>
                                   </div>
 
-                                  <input type="text" name="cart_id" id="cart_id" value="<?= $list[0]->uuid; ?>">
+                                  <input type="hidden" name="cart_id" id="cart_id" value="<?= @$list[0]->uuid; ?>">
 
                                   <p class="text-dark mt-2"><b>Accommodation Booking</b></p>
 
@@ -164,7 +164,7 @@
                                             <b>Total Price: 
                                               <span class="pl-3 h7 float-right">US$ <span id="amount"><?= $totalAmount; ?></span></span> </b>
                                             </p>
-                                            <input type="text" name="GrandTotal" id="GrandTotal" value="<?= $totalAmount ?>">
+                                            <input type="hidden" name="GrandTotal" id="GrandTotal" value="<?= $totalAmount ?>">
 
                                       </div>
                                     </div>
@@ -258,7 +258,7 @@ function payWithPaystack(e) {
               handler.openIframe();
           }else{
 
-            alert("Error inserting...");
+            alert(data.message);
 
           }
 

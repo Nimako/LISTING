@@ -374,7 +374,7 @@
 
             //alert(obj.pricingID);
 
-            $("#CartList").append('<tr id="cartID'+obj.pricingID+'"><td class="text-dark">'+obj.roomName+'<br><small>'+obj.guest+' Guests</small></td><td>USD '+obj.price+'</td><td><i class="fa fa-trash" style="cursor:pointer" onclick="RemoveFromCart('+obj.pricingID+','+obj.price+')"></i><input type="hidden" name="pricingID[]" value="'+obj.pricingID+'"></td></tr>');
+            $("#CartList").append('<tr id="cartID'+obj.pricingID+'"><td class="text-dark">'+obj.roomName+'<br><small>'+obj.guest+' Guests</small></td><td>USD '+obj.price+'</td><td><i class="fa fa-trash" style="cursor:pointer" onclick="RemoveFromCart('+obj.pricingID+','+obj.price+')"></i><input type="hidden" class="pricingID" name="pricingID[]" value="'+obj.pricingID+'"></td></tr>');
 
 
             console.log(priceIDArray);
@@ -450,9 +450,13 @@
 
     function SubmitBooking(){
 
-        $("#bookBtn").attr("disabled","disabled").text('Submiting...');
+        if ($('.pricingID').length) {
 
-        return true;
+            $("#bookBtn").attr("disabled","disabled").text('Submiting...');
+            return true;
+        }else{
+            return false;
+        }
 
     }
 
