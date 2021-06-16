@@ -118,8 +118,24 @@
 
     <script src="http://www.datejs.com/build/date.js" type="text/javascript"></script>
 
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.js"></script>
+
 
     <script>
+
+    $('document').ready(function() {
+    $('#paymentForm').validate();
+    })
+
+
+    // $("#paymentForm").on("submit",function(e){
+    //     // Stop the form submitting
+    //     //e.preventDefault();
+
+    //     alert("hello");
+
+    // });
+
 
     $('.carousel').carousel();
 

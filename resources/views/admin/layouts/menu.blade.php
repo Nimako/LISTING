@@ -129,7 +129,7 @@
 
                         <li>
                             <a href="javascript: void(0);">
-                                <i class="icon-people"></i>
+                                <i class="icon-home"></i>
                                 <span> Locations </span>
                                 <span class="menu-arrow"></span>
                             </a>
@@ -138,19 +138,21 @@
                             </ul>
                         </li>
 
-                        {{-- <li>
+                        <li>
                             <a href="javascript: void(0);">
-                                <i class="icon-people"></i>
-                                <span> Rooms </span>
+                                <i class="icon-note"></i>
+                                <span> Bookings </span>
                                 <span class="menu-arrow"></span>
                             </a>
                             <ul class="nav-second-level" aria-expanded="false">
-                                <li><a href="{{url("admin-location/index")}}">Location List</a></li>
+                                <li><a href="{{url("admin-booking/index")}}">Booking List</a></li>
+                                {{-- <li><a href="{{url("admin-booking/cancelled")}}">Cancelled bookings</a></li> --}}
                             </ul>
-                        </li> --}}
+                        </li>
 
 
-                        {{-- <li>
+                        {{-- 
+                        <li>
                             <a href="javascript: void(0);">
                                 <i class="icon-people"></i>
                                 <span> Customers </span>
@@ -159,7 +161,8 @@
                             <ul class="nav-second-level" aria-expanded="false">
                                 <li><a href="{{url("customer/index")}}">Customer List</a></li>
                             </ul>
-                        </li> --}}
+                        </li> 
+                        --}}
                         
 
                       <li class="menu-title mt-2">Management</li>

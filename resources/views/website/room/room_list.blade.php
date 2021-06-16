@@ -51,7 +51,7 @@
     <section class="pt-8 pb-11 bg-gray-01">
         <div class="container-fluid">
 
-          <form action="{{url("AddBooking")}}" method="POST" onsubmit="return SubmitBooking()">
+          <form action="{{url("AddToCart")}}" method="POST" onsubmit="return SubmitBooking()">
             @csrf
             <div class="row">
 

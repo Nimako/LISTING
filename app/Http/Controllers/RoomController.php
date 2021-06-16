@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Location;
 use App\Models\Property;
 use App\Models\Pricing;
 use App\Models\Cart;
+use App\Models\Booking;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 
 class RoomController extends Controller
@@ -26,7 +29,7 @@ class RoomController extends Controller
         endif;
     }
 
-    public function AddBooking(Request $request){
+    public function AddToCart(Request $request){
 
         $uuid = Str::uuid();
         $checkInOut = $request->checkIn;
@@ -74,6 +77,83 @@ class RoomController extends Controller
         $data["info"] = Property::where('id', $request->roomID)->first();
 
         return view("website/room/ImagePreview",$data);
+    }
+
+
+    //**************** TRANSACTION*************************** */
+
+
+    public function AddBooking(Request $request){ 
+
+        $uuid = Str::uuid();
+        $order_no = mt_rand(1000000, 9999999).time();
+  
+        $query = Booking::create([
+                'created_by'       => null, 
+                'updated_by'       => null, 
+                'uuid'             => $uuid,
+                'cart_id'          => $request->cart_id,
+                'order_no'         => $order_no,
+                'first_name'       => $request->first_name,
+                'last_name'        => $request->last_name,
+                'email'            => $request->email,
+                'email'            => $request->email,
+                'contact_number'   => $request->contact_number,
+                'country'          => $request->country,
+                'comment'          => $request->comment,
+                'total'            => $request->GrandTotal
+            ]);
+
+            if($query){
+                return ["statusCode"=>200, "orderNumber" => $order_no];
+            }else{
+                return ["statusCode"=>300];
+            }  
+      }
+
+
+    public function VerifyTransaction(Request $request){ 
+
+        $reference =  $request->query("reference");
+
+        $BookingData = Booking::where("order_no",$reference)->first();
+
+        if(!empty($BookingData)){
+
+            $query = Booking::where("order_no",$reference)->update(['status'=>2]);
+
+            $CartData = DB::table("v_carts")->where("uuid",$BookingData->cart_id)->first();
+        
+            Cart::where("uuid",$BookingData->cart_id)->update(['status'=>2]);
+
+            $bookingDate  = date('d F Y', strtotime($CartData->created_at));
+            $checkInData  = date('d F Y', strtotime($CartData->check_in));
+            $checkOutData = date('d F Y', strtotime($CartData->check_out));
+
+              $order = [
+                    'body'  => "This email is to confirm your booking on <b>[$bookingDate]</b> for a <b>$CartData->room_name</b> for  <b>$CartData->total_night</b> nights at the [$CartData->location] apartment. The check-in date share be on <b>[$checkInData]</b> and check-out date shall be on <b>[$checkOutData]</b>.<br><br> Further details of your booking are listed below:",
+
+                    'BookingDate'  => $bookingDate,
+                    'CheckIn'      => $checkInData,
+                    'CheckOut'     => $checkOutData,
+                    'Location'     => $CartData->location,
+                    'NumberGuest'  => $CartData->guest + $CartData->additional_guest,
+                    'Room_type'    => $CartData->room_name,
+                    //'Amenities'      => "",
+                    'Order_Number' => $reference,
+                    'Amenities'    => json_decode($CartData->amenities),
+                    'Total_Amount' => $BookingData->total,
+                    'Status'       => "PAYED",
+                    'footer'       => "If you have any inquiries, please do not hesitate to contact us or call staylug directly. <br> We are looking forward to your visit and hope that you enjoy your stay. <br> Best Regards",
+                ];
+
+                if($BookingData->status==1){
+                  @Mail::to($BookingData->email)->bcc('gyasinimako.gh@hotmail.com')->send(new Order($order));
+                }
+
+                $data['order'] = $order;
+                return  view('website/room/bookingSuccessPage', $data);
+        }
     }
 
 

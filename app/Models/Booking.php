@@ -14,11 +14,14 @@ class Booking extends Model
         'created_by', 
         'updated_by', 
         'uuid',
+        'cart_id',
+        'order_no',
         'first_name',
         'last_name',
         'email',
         'contact_number',
         'country',
-        'comment'
+        'comment',
+        'total'
     ];
 }

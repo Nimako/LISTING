@@ -21,6 +21,7 @@ class CreateBookingsTable extends Migration
             $table->bigInteger('updated_by')->nullable();
             $table->uuid('uuid');
             $table->uuid('cart_id');
+            $table->string('order_no')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
