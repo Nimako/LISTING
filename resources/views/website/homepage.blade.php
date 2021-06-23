@@ -21,7 +21,7 @@
    <section class="pt-10 pb-9">
       <div class="container">
          <h2 class="text-dark text-center lh-1625">
-            What Can We Help You Find?
+            Services Offered
          </h2>
          <span class="heading-divider mx-auto"></span>
          <div class="row info-box-4 mt-7">
@@ -192,11 +192,11 @@
             <div class="box pt-2 pb-4" data-animate="fadeInUp">
                 <div class="card shadow-hover-xs-2">
                     <div class="card-header bg-transparent px-4 pt-4 pb-3 card-img">
-                        <h2 class="fs-16 lh-2 mb-0"><a href="single-property-1.html"
+                        <h2 class="fs-16 lh-2 mb-0"><a href=""
                                 class="text-dark hover-primary"><?= $item->room_name; ?></a></h2>
                         <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p>
                         <div class="hover-change-image bg-hover-overlay rounded-lg">
-                            <img src="{{'storage/'.$item->featured_image}}" alt="Home in Metric Way" style="width:320px, height:229px">
+                            <img src="{{'storage/'.$item->featured_image}}" alt="" style="width:320px;height:229px">
                             <div class="card-img-overlay d-flex flex-column">
                                 <div><span class="badge badge-orange">Featured</span></div>
                                 <div class="mt-auto d-flex hover-image">
@@ -228,8 +228,8 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-between align-items-center pt-3">
-                            <p class="fs-17 font-weight-bold text-heading mb-0 lh-1">$1.250.000</p>
-                            <span class="badge badge-primary">For Sale</span>
+                            <p class="fs-17 font-weight-bold text-heading mb-0 lh-1">$ <?= @$item->Pricing[0]->price; ?> / night</p>
+                            {{-- <span class="badge badge-primary">For Sale</span> --}}
                         </div>
                     </div>
                     <div class="card-body py-2">
@@ -243,25 +243,20 @@
                                 <svg class="icon icon-bedroom fs-18 text-primary mr-1">
                                     <use xlink:href="#icon-bedroom"></use>
                                 </svg>
-                                3 Br
+                                <?= @$item->num_of_rooms; ?> Rooms
                             </li>
                             <li class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
                                 <svg class="icon icon-shower fs-18 text-primary mr-1">
                                     <use xlink:href="#icon-shower"></use>
                                 </svg>
-                                3 Ba
+                                <?= @$item->tatal_bathrooms; ?> Bathroom
                             </li>
+                         
                             <li class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                <svg class="icon icon-square fs-18 text-primary mr-1">
-                                    <use xlink:href="#icon-square"></use>
+                                <svg class="icon icon-user fs-18 text-primary mr-1">
+                                    <use xlink:href="#icon-user"></use>
                                 </svg>
-                                2300 Sq.Ft
-                            </li>
-                            <li class="list-inline-item text-gray font-weight-500 fs-13 d-flex align-items-center">
-                                <svg class="icon icon-Garage fs-18 text-primary mr-1">
-                                    <use xlink:href="#icon-Garage"></use>
-                                </svg>
-                                1 Gr
+                                <?= @$item->tatal_guest_capacity; ?> Guest
                             </li>
                         </ul>
                     </div>
