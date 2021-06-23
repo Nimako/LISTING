@@ -86,7 +86,6 @@ class RoomController extends Controller
 
     public function AddBooking(Request $request){ 
 
-
         $validator = Validator::make($request->all(), [
             'first_name' => 'bail|required',
             'last_name'  => 'bail|required',
@@ -133,7 +132,6 @@ class RoomController extends Controller
     public function VerifyTransaction(Request $request){ 
 
         $reference =  $request->query("reference");
-
         $BookingData = Booking::where("order_no",$reference)->first();
 
         if(!empty($BookingData)){
@@ -141,7 +139,6 @@ class RoomController extends Controller
             $query = Booking::where("order_no",$reference)->update(['status'=>2]);
 
             $CartData = DB::table("v_carts")->where("uuid",$BookingData->cart_id)->first();
-        
             Cart::where("uuid",$BookingData->cart_id)->update(['status'=>2]);
 
             $bookingDate  = date('d F Y', strtotime($CartData->created_at));
@@ -150,7 +147,6 @@ class RoomController extends Controller
 
               $order = [
                     'body'  => "This email is to confirm your booking on <b>[$bookingDate]</b> for a <b>$CartData->room_name</b> for  <b>$CartData->total_night</b> nights at the [$CartData->location] apartment. The check-in date share be on <b>[$checkInData]</b> and check-out date shall be on <b>[$checkOutData]</b>.<br><br> Further details of your booking are listed below:",
-
                     'BookingDate'  => $bookingDate,
                     'CheckIn'      => $checkInData,
                     'CheckOut'     => $checkOutData,

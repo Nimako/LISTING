@@ -73,18 +73,11 @@ tinymce.init({
                           
                              <div class="col-md-12">
                                  <label>Location</label>
-                                 <select name="location"  class="form-control" required>
-                                     <?php if(!empty($locationList)): ?>
-                                     <option value="">select</option>
-                                     <?php foreach($locationList as $item): ?>
-                                       <option <?= @$info->location==$item?"selected":null; ?> value="<?= $item; ?>"><?= $item; ?></option>
-                                     <?php endforeach; ?>
-                                     <?php endif; ?>
-                                 </select><br>
+                                 <input type="text" class="form-control" name="location" value="<?= @$info->location; ?>">
 
                                  <div class="form-group">
                                     <label>Apartment Name</label>
-                                    <input id="apartmentName" name="apartmentName" value="<?= @$info->apartmentName; ?>" class="form-control" type="text" >
+                                    <input id="apartmentName" required name="apartmentName" value="<?= @$info->apartmentName; ?>" class="form-control" type="text" >
                                  </div>
                            
                                  <label>Heading</label>

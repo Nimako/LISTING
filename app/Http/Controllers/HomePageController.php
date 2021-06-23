@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Location;
+use App\Models\Property;
+use Illuminate\Support\Str;
 
 class HomePageController extends Controller
 {
@@ -18,6 +20,7 @@ class HomePageController extends Controller
     public function Homepage(){ 
         
         $data['list'] = Location::all();
+        $data['rooms'] = Property::all()->random(3);
 
         return view("website/homepage",$data);
     }

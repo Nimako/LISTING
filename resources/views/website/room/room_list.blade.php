@@ -431,20 +431,20 @@
             }
 
         }else{
-            var CurrentPrice =  $("#price"+roomID).text();
-            var currentGuest = $("#guest"+roomID).text();
+            // var CurrentPrice =  $("#price"+roomID).text();
+            // var currentGuest = $("#guest"+roomID).text();
 
-            $("#price"+roomID).text(Number(CurrentPrice)-Number(value));           
-            $("#guest"+roomID).text(Number(currentGuest)-Number(1));
+            // $("#price"+roomID).text(Number(CurrentPrice)-Number(value));           
+            // $("#guest"+roomID).text(Number(currentGuest)-Number(1));
 
-            var totalBalance =  $("#totalPrice").val();
-            var totalNights  =  $(".NumNights").val();
+            // var totalBalance =  $("#totalPrice").val();
+            // var totalNights  =  $(".NumNights").val();
 
-            if(Number(totalBalance)>0){
-               $("#totalPrice").val(Number(totalBalance)-Number(value));
-               $("#totalPriceText").text(Number(totalBalance)-Number(value)); 
-               $("#GrandTotal").text(Number($("#totalPrice").val()) * Number(totalNights));
-            }
+            // if(Number(totalBalance)>0){
+            //    $("#totalPrice").val(Number(totalBalance)-Number(value));
+            //    $("#totalPriceText").text(Number(totalBalance)-Number(value)); 
+            //    $("#GrandTotal").text(Number($("#totalPrice").val()) * Number(totalNights));
+            // }
         }
     }
 
