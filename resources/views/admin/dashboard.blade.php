@@ -38,8 +38,8 @@
                             <div class="col-md-6 col-xl-3">
                                 <div class="card-box tilebox-one">
                                     <i class="icon-wallet float-right m-0 h2 text-muted"></i>
-                                    <h6 class="text-muted text-uppercase mt-0">Book</h6>
-                                    <h3 class="my-3" data-plugin="counterup">0.0000</h3>
+                                    <h6 class="text-muted text-uppercase mt-0">Bookings</h6>
+                                    <h3 class="my-3" data-plugin="counterup">{{@$total_booking}}</h3>
                                 </div>
                             </div>
 
