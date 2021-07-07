@@ -18,7 +18,56 @@
          </a>
       </div>
    </section>
-   <section class="pt-10 pb-9">
+
+   <section class="mb-6 mt-10">
+      <div class="container">
+        
+         <section class="row">
+
+            <div class="col-6">
+               <div class="card text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
+                  <img src="{{'storage/'.$list[0]->featuredImage}}" style="height:390px" class="card-img" alt="New York">
+                  <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
+                     <h2 class="card-title mb-0 fs-20 lh-182"><a href="listing-full-width-list.html" class="text-white">{{ucfirst($list[0]->location)}}</a>
+                     </h2>
+                     {{-- <p class="card-text fs-13 font-weight-500 letter-spacing-087 mb-0">FROM<span class="ml-2 fs-15 font-weight-bold">$250.000 - $900.000</span> --}}
+                     </p>
+                  </div>
+               </div>
+            </div>
+
+            <div class="col-6">
+
+               <h2 class="text-dark text-center lh-1625">
+                  Welcome to Staylug
+               </h2>
+
+               <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                  molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                  numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                  optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+                  obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+                  nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
+                  tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
+                  quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
+                  sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
+                  recusandae alias error harum maxime adipisci amet laborum. Perspiciatis 
+                  minima nesciunt dolorem! Officiis iure rerum voluptates a cumque velit 
+                  quibusdam sed amet tempora. Sit laborum ab, eius fugit doloribus tenetur 
+                  fugiat, temporibus enim commodi iusto libero magni deleniti quod quam 
+               </p>
+
+
+            </div>
+
+         </section>
+      </div>
+   </section>
+
+
+
+   {{-- <section class="pt-10 pb-9">
       <div class="container">
          <h2 class="text-dark text-center lh-1625">
             Services Offered
@@ -96,7 +145,8 @@
             </div>
          </div>
       </div>
-   </section>
+   </section> --}}
+
    <section class="mb-6">
       <div class="container">
          <h2 class="text-dark text-center lh-1625">
@@ -370,7 +420,7 @@
       </div>
    </section>
    --}}
-   <section data-animated-id="6">
+   {{-- <section data-animated-id="6">
       <div class="bg-patten-01 pt-12 pb-10 bg-secondary">
          <div class="container">
             <span class="heading-divider mx-auto"></span>
@@ -411,6 +461,6 @@
             </div>
          </div>
       </div>
-   </section>
+   </section> --}}
 </main>
 @endsection

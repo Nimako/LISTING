@@ -56,8 +56,6 @@ use App\Http\Controllers\HomePageController;
           Route::get('/room/VerifyTransaction',  [RoomController::class,'VerifyTransaction']);
 
 
-
-
           //*********************************ADMIN**************************************************/
 
           // Registered Location
@@ -83,17 +81,19 @@ use App\Http\Controllers\HomePageController;
                Route::get('/delete-bed/{id}',  [ApartmentController::class,'DeleteBed']);   
           });
 
-          // Registered Rooms/properties
+          // Registered Bookings/properties
           Route::group(['prefix'=>'admin-booking'],function(){
                Route::get('/index/', [BookingController::class, 'Index']);
-               Route::get('/cancelled/', [BookingController::class, 'Cancelled']);
+               Route::get('/detail/{id}',  [BookingController::class,'Detail']);
 
-               Route::post('/store', [ApartmentController::class, 'Store']);
-               Route::post('/update', [ApartmentController::class, 'Update']);
-               Route::get('/detail/{id}',  [ApartmentController::class,'Detail']);
-               Route::get('/delete/{id}',  [ApartmentController::class,'DeleteImage']);
-               Route::get('/delete-room-price/{id}',  [ApartmentController::class,'DeleteRoomPrice']);
-               Route::get('/delete-bed/{id}',  [ApartmentController::class,'DeleteBed']);   
+
+               // Route::post('/store', [ApartmentController::class, 'Store']);
+               // Route::post('/update', [ApartmentController::class, 'Update']);
+               // Route::get('/detail/{id}',  [ApartmentController::class,'Detail']);
+               // Route::get('/delete/{id}',  [ApartmentController::class,'DeleteImage']);
+               // Route::get('/delete-room-price/{id}',  [ApartmentController::class,'DeleteRoomPrice']);
+               // Route::get('/delete-bed/{id}',  [ApartmentController::class,'DeleteBed']);   
+
           });
 
 

@@ -1,6 +1,8 @@
 @extends('admin/layouts.tempDashboard')
 @section('content')
-
+<style>
+    .badge-success{background-color: green}
+</style>
 
 <div class="content-page">
     <div class="content">
@@ -50,13 +52,13 @@
                             <?php if(!empty($list)): $x=1; ?>
                             <?php foreach($list as $item): ?>
                             <tr>
-                                <td style="border-left:5px solid green"><?= $x++; ?></td>
-                                <td><label class="badge badge-danger"><?= $item->order_no; ?></label></td>
+                                <td><?= $x++; ?></td>
+                                <td style="color:rgb(26, 168, 26)"><b><?= $item->order_no; ?></b></td>
                                 <td><?= date('l d F Y', strtotime($item->check_in));; ?></td>
                                 <td><?= date('l d F Y', strtotime($item->check_out)); ?></td>
                                 <td><?= @$item->first_name ?></td>
                                 <td><?= @$item->last_name; ?></td>
-                                <td class="text-center"><?= @$item->status; ?></td>
+                                <td class="text-center"><label class="text-uppercase badge badge-<?= @BOOKING_STATUSES_COLOR[$item->status]; ?>"><?= @BOOKING_STATUSES[$item->status]; ?></label></td>
                                 {{-- <td class="text-center"> 
                                     <div class="dropdown">
                                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,7 +73,7 @@
                                       </div>
                                 </td> --}}
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-success">View</a>
+                                    <a href="{{url('admin-booking/detail/'.$item->uuid)}}" class="btn btn-sm btn-success">View</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
-
 class RoomController extends Controller
 {
     
@@ -29,6 +28,7 @@ class RoomController extends Controller
             return \Redirect("/");
         endif;
     }
+    
 
     public function AddToCart(Request $request){
 
@@ -104,7 +104,7 @@ class RoomController extends Controller
         }
 
         $uuid = Str::uuid();
-        $order_no = mt_rand(1000000, 9999999).time();
+        $order_no = self::OrderNum();
   
         $query = Booking::create([
                 'created_by'       => null, 
@@ -168,6 +168,19 @@ class RoomController extends Controller
                 $data['order'] = $order;
                 return  view('website/room/bookingSuccessPage', $data);
         }
+    }
+
+
+    public static function OrderNum(){
+
+        $squencedtoday = DB::table("bookings")->whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') = DATE_FORMAT(NOW(),'%Y-%m-%d')")->count();
+
+        $prefix = 'SL';
+        $ymd = date('ymd');
+        $squence = $squencedtoday+1;
+        $squence = str_pad($squence,4,0,STR_PAD_LEFT);
+
+        return $prefix.$ymd.'-'.$squence;;
     }
 
 

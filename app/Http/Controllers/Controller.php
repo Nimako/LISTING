@@ -48,6 +48,27 @@ define('PROPERTY_STATUSES', array(
    5 => 'Deleted'
 ));
 
+define('BOOKING_STATUSES', array(
+   1 => 'Pending-Payment',
+   2 => 'Payment-Made',
+   3 => 'Checked-In',
+   4 => 'Cancelled',
+));
+
+define('BOOKING_STATUSES_COLOR', array(
+   1 => 'primary',
+   2 => 'success',
+   3 => 'warning',
+   4 => 'danger',
+));
+
+define('CART_STATUSES', array(
+   1 => 'Pending',
+   2 => 'Checked-In',
+   3 => 'Cancelled',
+   4 => 'Deleted',
+));
+
 #### Others ####
 define('STRING_GLUE', '**');
 
