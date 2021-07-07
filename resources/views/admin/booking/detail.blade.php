@@ -28,8 +28,18 @@
 
                     <div class="card-box row">
 
+                        <section class="col-md-12">
+
+                        <p class="ml-3 h6 text-uppercase text-black">{{ $room->first_name ." ". $room->last_name   }} | {{ $room->contact_number }} | {{ $room->email }} | {{ $room->country }} | <small>{{ $room->comment }} </small> </p>
+
+                        <hr>
+                        </section>
+                       
+
+                     
+
                     <section class="col-md-4">
-                        <table class="table_" cellpadding="13" cellspacing="10">
+                        <table class="table_" cellpadding="10" cellspacing="10">
                             <tr>
                                 <td><b>Booking number:</b></td>
                                 <td><label class="badge badge-danger"><?= $room->order_no; ?></label></td>
@@ -52,11 +62,9 @@
 
                     <section class="col-md-8">
 
-                        <h4 class="text-center">Room</h4>
-
                         <?php if(!empty($rooms)): ?>
                         <?php foreach($rooms as $item): ?>
-                           <p class="h5 text-secondary"> {{$item->room_name}}</p>
+                           <p class="h6 text-secondary"> {{$item->room_name}}</p>
                            <p class="h7">
                                 <b class="text-primary">Guest:</b> {{$item->guest}},   
                                 <b class="text-primary">Additional Guest:</b> {{ $item->additional_guest !=null?$item->additional_guest:"0"}} ,

@@ -244,36 +244,13 @@
                     <div class="card-header bg-transparent px-4 pt-4 pb-3 card-img">
                         <h2 class="fs-16 lh-2 mb-0"><a href=""
                                 class="text-dark hover-primary"><?= $item->room_name; ?></a></h2>
-                        <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p>
+                        {{-- <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p> --}}
                         <div class="hover-change-image bg-hover-overlay rounded-lg">
                             <img src="{{'storage/'.$item->featured_image}}" alt="" style="width:320px;height:229px">
                             <div class="card-img-overlay d-flex flex-column">
-                                <div><span class="badge badge-orange">Featured</span></div>
+                                {{-- <div><span class="badge badge-orange">Featured</span></div> --}}
                                 <div class="mt-auto d-flex hover-image">
-                                    <ul class="list-inline mb-0 d-flex align-items-end mr-auto">
-                                        <li class="list-inline-item mr-2" data-toggle="tooltip" title="9 Images">
-                                            <a href="#" class="text-white hover-primary">
-                                                <i class="far fa-images"></i><span class="pl-1">9</span>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item" data-toggle="tooltip" title="2 Video">
-                                            <a href="#" class="text-white hover-primary">
-                                                <i class="far fa-play-circle"></i><span class="pl-1">2</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <ul class="list-inline mb-0 d-flex align-items-end mr-n3">
-                                        <li class="list-inline-item mr-3 h-32" data-toggle="tooltip" title="Wishlist">
-                                            <a href="#" class="text-white fs-20 hover-primary">
-                                                <i class="far fa-heart"></i>
-                                            </a>
-                                        </li>
-                                        <li class="list-inline-item mr-3 h-32" data-toggle="tooltip" title="Compare">
-                                            <a href="#" class="text-white fs-20 hover-primary">
-                                                <i class="fas fa-exchange-alt"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                                  
                                 </div>
                             </div>
                         </div>
