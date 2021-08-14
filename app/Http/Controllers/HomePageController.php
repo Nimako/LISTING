@@ -20,7 +20,12 @@ class HomePageController extends Controller
     public function Homepage(){ 
         
         $data['list'] = Location::all();
-        $data['rooms'] = Property::all()->random(3);
+
+        if(Property::count()>2){
+
+            $data['rooms'] = Property::all()->random(3);
+
+        }
 
         return view("website/homepage",$data);
     }

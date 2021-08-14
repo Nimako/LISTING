@@ -64,7 +64,7 @@ class ApartmentLocationController extends Controller
           $bannerImagePath = "";
           $featuredImagePath = "";
 
-          $BasePath = "location/".str_replace('_', '', strtolower($request->location));
+          $BasePath = "location/".str_replace(' ', '_', strtolower($request->location));
 
         if ($request->hasfile('featuredImage')) {
             $image = $request->file('featuredImage');
@@ -201,7 +201,7 @@ class ApartmentLocationController extends Controller
        $result =  Location::find($id);
 
       if($type=="featuredImage"){
-         if(unlink(storage_path('app/public/'.$path))){
+         if(unlink(storage_path(STORAGE_URL.$path))){
             Location::where(['id'=>$id])->update([
                 'featuredImage'   => "",
             ]);
