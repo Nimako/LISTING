@@ -39,4 +39,16 @@ class HomePageController extends Controller
     public function contactUs(){        
         return view("website/contactUs");
     }
+
+    public function privacyPolicy(){        
+        return view("website/contactUs");
+    }
+
+    public function termsConditions(){        
+        return view("website/contactUs");
+    }
+
+    public function aboutUs(){        
+        return view("website/contactUs");
+    }
 }

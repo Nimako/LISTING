@@ -21,6 +21,10 @@ class Controller extends BaseController
 
 }    
 
+define('STORAGE_URL', '/storage/');
+//define('STORAGE_URL', '/storage/app/public/');
+
+
 /***********************************************
 Status For Processing Data
 /************************************************/

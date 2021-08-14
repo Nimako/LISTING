@@ -75,7 +75,7 @@
                         <div class="media flex-column flex-sm-row no-gutters" style="">
                             <div class="col-sm-3 mr-sm-5 card border-0 hover-change-image bg-hover-overlay mb-sm-5">
                                 <?php if(!empty($item->featured_image)): ?>
-                                <img src="{{asset('storage/'.$item->featured_image)}}"  class="card-img" alt="" style="height:191px">
+                                <img src="{{asset(STORAGE_URL.$item->featured_image)}}"  class="card-img" alt="" style="height:191px">
                                 <?php else: ?>
                                 <img style="cursor: pointer" src="{{asset('assets/images/featuredlocationDefault.jpg')}}" width="300" height="350" alt="<?= Str::ucfirst($item->location); ?>">
                                 <?php endif; ?>

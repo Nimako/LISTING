@@ -237,8 +237,8 @@ tinymce.init({
                                             <input type="file"   class="form-control" name="featured_image" accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                             <?php 
                                             if(!empty($info->featured_image)): ?>
-                                             <a href="{{asset("storage/".$info->featured_image)}}" target="_bank">
-                                               <img src="{{asset("storage/".$info->featured_image)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                             <a href="{{asset(STORAGE_URL.$info->featured_image)}}" target="_bank">
+                                               <img src="{{asset(STORAGE_URL.$info->featured_image)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                              </a>
                                              <a href="{{url("admin-location/delete/".$info->id."?type=featured_image&path=".$info->featured_image)}}">Delete</a>
                                             <?php endif; ?>
@@ -254,8 +254,8 @@ tinymce.init({
                                             <?php  if(!empty($info->images_paths)): ?>
                                             <?php  $images_paths = json_decode($info->images_paths,true); ?>
                                             <?php foreach($images_paths as $item): ?>
-                                            <a href="{{asset("storage/".$item)}}" target="_bank">
-                                                <img src="{{asset("storage/".$item)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                            <a href="{{asset(STORAGE_URL.$item)}}" target="_bank">
+                                                <img src="{{asset(STORAGE_URL.$item)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                             </a>
                                              <br>
                                             <a href="{{url("admin-location/delete/".$info->id."?type=images_paths&path=".$item)}}">Delete

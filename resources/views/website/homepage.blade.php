@@ -26,7 +26,7 @@
 
             <div class="col-6">
                <div class="card text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                  <img src="{{'storage/'.$list[0]->featuredImage}}" style="height:390px" class="card-img" alt="New York">
+                  <img src="{{STORAGE_URL.$list[0]->featuredImage}}" style="height:390px" class="card-img" alt="New York">
                   <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
                      <h2 class="card-title mb-0 fs-20 lh-182"><a href="listing-full-width-list.html" class="text-white">{{ucfirst($list[0]->location)}}</a>
                      </h2>
@@ -160,7 +160,7 @@
                   <?php if(!empty($list[1]->featuredImage)): ?>
                    <div class="col-md-6 mb-6">
                      <div class="card border-0 text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                        <img src="{{'storage/'.$list[1]->featuredImage}}" style="width:268px;height:181px" class="card-img" alt="New York">
+                        <img src="{{STORAGE_URL.$list[1]->featuredImage}}" style="width:268px;height:181px" class="card-img" alt="New York">
                         <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
                            <h2 class="mb-0 fs-20 lh-182"><a href="listing-full-width-list.html" class="text-white">{{ucfirst($list[1]->location)}}</a></h2>
                            {{-- <p class="fs-13 font-weight-500 letter-spacing-087 mb-0">FROM<span class="ml-2 fs-15 font-weight-bold">$540.000 - $900.000</span> --}}
@@ -173,7 +173,7 @@
                   <?php if(!empty($list[2]->featuredImage)): ?>
                   <div class="col-md-6 mb-6">
                      <div class="card border-0 text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                        <img src="{{'storage/'.$list[2]->featuredImage}}" style="width:268px;height:181px" class="card-img" alt="New York">
+                        <img src="{{STORAGE_URL.$list[2]->featuredImage}}" style="width:268px;height:181px" class="card-img" alt="New York">
                         <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
                            <h2 class="mb-0 fs-20 lh-182"><a href="listing-full-width-list.html" class="text-white">{{ucfirst($list[2]->location)}}</a></h2>
                            {{-- <p class="fs-13 font-weight-500 letter-spacing-087 mb-0">FROM<span class="ml-2 fs-15 font-weight-bold">$340.000 - $600.000</span> --}}
@@ -186,7 +186,7 @@
                   <?php if(!empty($list[3]->featuredImage)): ?>
                   <div class="col-md-6 mb-6">
                      <div class="card border-0 text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                        <img src="{{'storage/'.$list[3]->featuredImage}}" style="width:268px;height:181px" class="card-img" alt="New York">
+                        <img src="{{STORAGE_URL.$list[3]->featuredImage}}" style="width:268px;height:181px" class="card-img" alt="New York">
                         <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
                            <h2 class="mb-0 fs-20 lh-182"><a href="listing-full-width-list.html" class="text-white">{{ucfirst($list[3]->location)}}</a></h2>
                            {{-- <p class="fs-13 font-weight-500 letter-spacing-087 mb-0">FROM<span class="ml-2 fs-15 font-weight-bold">$310.000 - $700.000</span> --}}
@@ -199,7 +199,7 @@
                   <?php if(!empty($list[4]->featuredImage)): ?>
                   <div class="col-md-6 mb-6">
                      <div class="card border-0 text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                        <img src="{{'storage/'.$list[4]->featuredImage}}" style="width:268px;height:181px" class="card-img" alt="New York">
+                        <img src="{{STORAGE_URL.$list[4]->featuredImage}}" style="width:268px;height:181px" class="card-img" alt="New York">
                         <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
                            <h2 class="mb-0 fs-20 lh-182"><a href="listing-full-width-list.html" class="text-white">{{ucfirst($list[4]->location)}}</a></h2>
                            {{-- <p class="fs-13 font-weight-500 letter-spacing-087 mb-0">FROM<span class="ml-2 fs-15 font-weight-bold">$150.000 - $700.000</span> --}}
@@ -214,7 +214,7 @@
             <?php if(!empty($list[0]->featuredImage)): ?>
             <div class="col-lg-6">
                <div class="card text-white bg-overlay hover-zoom-in" data-animate="zoomIn">
-                  <img src="{{'storage/'.$list[0]->featuredImage}}" style="height:390px" class="card-img" alt="New York">
+                  <img src="{{STORAGE_URL.$list[0]->featuredImage}}" style="height:390px" class="card-img" alt="New York">
                   <div class="card-img-overlay d-flex justify-content-end flex-column p-4">
                      <h2 class="card-title mb-0 fs-20 lh-182"><a href="listing-full-width-list.html" class="text-white">{{ucfirst($list[0]->location)}}</a>
                      </h2>
@@ -246,7 +246,7 @@
                                 class="text-dark hover-primary"><?= $item->room_name; ?></a></h2>
                         {{-- <p class="font-weight-500 text-gray-light mb-3">1421 San Pedro St, Los Angeles</p> --}}
                         <div class="hover-change-image bg-hover-overlay rounded-lg">
-                            <img src="{{'storage/'.$item->featured_image}}" alt="" style="width:320px;height:229px">
+                            <img src="{{STORAGE_URL.$item->featured_image}}" alt="" style="width:320px;height:229px">
                             <div class="card-img-overlay d-flex flex-column">
                                 {{-- <div><span class="badge badge-orange">Featured</span></div> --}}
                                 <div class="mt-auto d-flex hover-image">
@@ -310,7 +310,7 @@
                <p class="h3 text-center"><?= Str::ucfirst($item->location); ?></p>
                <a style="cursor: pointer" href="{{url($item->slug.'/rooms')}}">
                <?php if(!empty($item->featuredImage)): ?>
-               <img style="cursor: pointer" src="{{'storage/'.$item->featuredImage}}" width="500" height="450" alt="<?= Str::ucfirst($item->location); ?>">
+               <img style="cursor: pointer" src="{{STORAGE_URL.$item->featuredImage}}" width="500" height="450" alt="<?= Str::ucfirst($item->location); ?>">
                <?php else: ?>
                <img style="cursor: pointer" src="{{asset('assets/images/featuredlocationDefault.jpg')}}" width="300" height="350" alt="<?= Str::ucfirst($item->location); ?>">
                <?php endif; ?>

@@ -65,12 +65,22 @@
     </li>
     <li class="list-inline-item divider mr-3"></li>
     <li class="list-inline-item mr-3">
-    <a href="tel:(+1)000567990" class="text-white font-weight-bold fs-15">(+1) 000 567990</a>
+    <a href="tel:+233264888317" class="text-white font-weight-bold fs-15">(+233) 26 488 8317
+    </a>
     </li>
     <li class="list-inline-item divider mr-3"></li>
     <li class="list-inline-item">
-    <a href="mailto:contact@homeid.com" class="text-white opacity-7 hover-white">info@staylug.com</a>
+    <a href="mailto:info@staylug.com" class="text-white opacity-7 hover-white">info@staylug.com</a>
     </li>
+    <li class="list-inline-item divider mr-3"></li>
+    <li class="list-inline-item">
+    <a href="{{url('privacy-policy')}}" class="text-white opacity-7 hover-white">Privacy & Policy</a>
+    -
+    <a href="{{url('terms-conditions')}}" class="text-white opacity-7 hover-white">Terms & Conditions</a>
+    -
+    <a href="{{url('about-us')}}" class="text-white opacity-7 hover-white">About Us</a>
+    </li>
+    
     </ul>
     <ul class="list-inline text-center mb-2">
     <li class="list-inline-item mr-0">

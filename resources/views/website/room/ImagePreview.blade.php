@@ -13,7 +13,7 @@
     <div class="carousel-inner">
         <?php foreach($roomImages as $key => $item): ?>
       <div class="carousel-item <?= $key==0?"active":null; ?>">
-        <img class="d-block w-100" src="{{asset("storage/".$item)}}" alt="First slide">
+        <img class="d-block w-100" src="{{asset(STORAGE_URL.$item)}}" alt="First slide">
       </div>
       <?php endforeach; ?>
     </div>

@@ -258,8 +258,8 @@ tinymce.init({
 
                                             <?php 
                                             if(!empty($room->featured_image)): ?>
-                                             <a href="{{asset("storage/".$room->featured_image)}}" target="_bank">
-                                            <img src="{{asset("storage/".$room->featured_image)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                             <a href="{{asset(STORAGE_URL.$room->featured_image)}}" target="_bank">
+                                            <img src="{{asset(STORAGE_URL.$room->featured_image)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                              </a>
                                              <a href="{{url("admin-apartment/delete/".$room->id."?type=featured_image&path=".$room->featured_image)}}">Delete</a>
                                             <?php endif; ?>
@@ -279,8 +279,8 @@ tinymce.init({
                                                 <?php if(!empty($room->images_paths)): ?>
                                                 <?php  $images_paths = json_decode($room->images_paths,true); ?>
                                                 <?php foreach($images_paths as $item): ?>
-                                                 <a href="{{asset("storage/".$item)}}" target="_bank">
-                                                    <img src="{{asset("storage/".$item)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
+                                                 <a href="{{asset(STORAGE_URL.$item)}}" target="_bank">
+                                                    <img src="{{asset(STORAGE_URL.$item)}}" width="100" class="rounded" alt="..." accept="image/x-png,image/gif,image/jpeg,image/jpg">
                                                   </a>
                                                     <a href="{{url("admin-apartment/delete/".$room->id."?type=images_paths&path=".$item)}}">Delete
                                                     </a><br>

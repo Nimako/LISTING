@@ -13,7 +13,7 @@
 
 <main id="content">
 
-        <section style="background-image: url('{{asset('storage/'.$location->bannerImage)}}')"
+        <section style="background-image: url('{{asset(STORAGE_URL.$location->bannerImage)}}')"
         class="bg-img-cover-center py-10 pt-md-16 pb-md-17 bg-overlay_">
         <div class="container position-relative z-index-2 text-center">
            
@@ -54,7 +54,7 @@
                             <?php foreach($locationImages as $item): ?>
                             <div class="box px-0">
                                 <div class="card border-0">
-                                    <img src="{{asset("storage/".$item)}}" class="card-img"  alt="" style="height:477px">
+                                    <img src="{{asset(STORAGE_URL.$item)}}" class="card-img"  alt="" style="height:477px">
                                     <div class="card-img-overlay_ d-flex flex-column bg-gradient-3 rounded-lg">
                                        
                                       
@@ -99,7 +99,7 @@
                     <?php foreach($attractionImages as $item): ?>
                     <div class="col-6 mb-6 mb-lg-0">
                         <div class="shadow-2 px-2 pb-2 pt-2 h-100 border-0 zoom">
-                            <img src="{{asset("storage/".$item)}}" class="card-img">                       
+                            <img src="{{asset(STORAGE_URL.$item)}}" class="card-img">                       
                         </div>
                     </div> <br>
                     <?php endforeach; ?>
